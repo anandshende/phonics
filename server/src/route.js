@@ -1,41 +1,45 @@
 module.exports = (app) => {
 
     // Phoneme
+    var phoneme = require('./phoneme');
+    
     app.get('/phoneme', (req, res) => {
-        res.end('get phoneme list');
+        res.end(phoneme.getPhonemeList());
     });
 
     app.post('/phoneme', (req, res) => {
-        res.end('add phoneme');
+        res.end(phoneme.addPhonemeList());
     });
 
     app.put('/phoneme/:id', (req, res) => {
-        res.end('order phoneme');
+        res.end(phoneme.orderPhonemeList());
     });
 
     app.delete('/phoneme/:id', (req, res) => {
-        res.end('delete phoneme');
+        res.end(phoneme.deletePhoneme());
     });
 
 
     // Words
+    var words = require('./words');
+
     app.get('/phoneme/:id', (req, res) => {
-        res.end('get words list');
+        res.end(words.getWords());
     });
 
     app.get('/phoneme/:id/:wordId', (req, res) => {
-        res.end('get words assests');
+        res.end(words.getWordDetails());
     });
 
     app.post('/phoneme/:id', (req, res) => {
-        res.end('add word');
+        res.end(words.addWord());
     });
 
     app.put('/phoneme/:id/:wordId', (req, res) => {
-        res.end('order words');
+        res.end(words.orderWords());
     });
 
     app.delete('/phoneme/:id/:wordId', (req, res) => {
-        res.end('delete word');
+        res.end(words.deleteWord());
     });
 };
