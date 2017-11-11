@@ -2,6 +2,10 @@ var express = require('express');
 
 var app = express();
 
-app.listen(2000, () => {
-    console.log("Started server");
+const port = 2000;
+
+app.listen(port, () => {
+    console.log("Started server at port: "+ port);
 });
+
+require('./route')(app);
