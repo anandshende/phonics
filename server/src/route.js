@@ -2,9 +2,15 @@ module.exports = (app) => {
 
     // Phoneme
     var phoneme = require('./phoneme');
-    
+
     app.get('/phoneme', (req, res) => {
-        res.end(phoneme.getPhonemeList());
+        phoneme.getPhonemeList((result) => {
+            var string = "";
+            result.forEach(element => {
+                string = string + element.name + "  ";
+            });
+            res.end(string);
+        })
     });
 
     app.post('/phoneme', (req, res) => {
@@ -24,7 +30,13 @@ module.exports = (app) => {
     var words = require('./words');
 
     app.get('/phoneme/:id', (req, res) => {
-        res.end(words.getWords());
+        words.getWords(req.params.id, (result) => {
+            var string = "";
+            result.forEach(element => {
+                string = string + element.name + "  ";
+            });
+            res.end(string);
+        });
     });
 
     app.get('/phoneme/:id/:wordId', (req, res) => {

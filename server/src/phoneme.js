@@ -1,7 +1,11 @@
-var getPhonemeList = () => {
-    var op = 'get phoneme list';
-    console.log(op);
-    return op;
+var dbConfig = require('./db-config');
+var common = require('./common-util');
+
+var getPhonemeList = (callback) => {
+    var sql = "SELECT * FROM phonemes";
+    dbConfig.getResultSet(sql, (result) => {
+        callback( common.extractPhoneme(result) );
+    });
 };
 
 var addPhonemeList = () => {
@@ -16,7 +20,7 @@ var orderPhonemeList = () => {
     return op;
 };
 
-var deletePhoneme = () => {
+var deletePhoneme = () => {on
     var op = 'delete phoneme';
     console.log(op);
     return op;

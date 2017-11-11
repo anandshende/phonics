@@ -1,7 +1,11 @@
-var getWords = () => {
-    var op = 'get words list';
-    console.log(op);
-    return op;
+var dbConfig = require('./db-config');
+var common = require('./common-util');
+
+var getWords = (id, callback) => {
+    var sql = "SELECT * FROM words WHERE phoneme_id=" + id + ";";
+    dbConfig.getResultSet(sql, (result) => {
+        callback(common.extractWord(result));
+    });
 };
 
 var getWordDetails = () => {
