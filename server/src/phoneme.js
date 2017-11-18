@@ -1,10 +1,11 @@
 var dbConfig = require('./db-config');
 var common = require('./common-util');
+var phonemeModel = require('./phoneme-model');
 
 var getPhonemeList = (callback) => {
     var sql = "SELECT * FROM phonemes";
     dbConfig.getResultSet(sql, (result) => {
-        callback( common.extractPhoneme(result) );
+        callback( phonemeModel.extractPhoneme(result) );
     });
 };
 

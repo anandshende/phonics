@@ -1,10 +1,11 @@
 var dbConfig = require('./db-config');
 var common = require('./common-util');
+var wordsModel = require('./words-model');
 
 var getWords = (id, callback) => {
     var sql = "SELECT * FROM words WHERE phoneme_id=" + id + ";";
     dbConfig.getResultSet(sql, (result) => {
-        callback(common.extractWord(result));
+        callback(wordsModel.extractWord(result));
     });
 };
 
