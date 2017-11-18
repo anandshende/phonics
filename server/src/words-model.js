@@ -1,10 +1,3 @@
-var PhonemeModel = function() {
-    this.id;
-    this.timestamp;
-    this.order_no;
-    this.name;
-};
-
 var WordsModel = function() {
     this.id;
     this.timestamp;
@@ -14,6 +7,5 @@ var WordsModel = function() {
 }
 
 module.exports = {
-    PhonemeModel: PhonemeModel,
     WordsModel: WordsModel
 }

@@ -1,9 +1,10 @@
-var model = require('./models');
+var PhonemeModel = require('./phoneme-model');
+var WordsModel = require('./words-model');
 
 var extractPhoneme = (result) => {
     var extractedData = [];
     result.forEach(element => {
-        var phonemeModel = new model.PhonemeModel();
+        var phonemeModel = new PhonemeModel.PhonemeModel();
         phonemeModel.id = element.id;
         phonemeModel.name = element.name;
         phonemeModel.order_no = element.order_no;
@@ -16,7 +17,7 @@ var extractPhoneme = (result) => {
 var extractWord = (result) => {
     var extractedData = [];
     result.forEach(element => {
-        var wordsModel = new model.WordsModel();
+        var wordsModel = new WordsModel.WordsModel();
         wordsModel.id = element.id;
         wordsModel.name = element.name;
         wordsModel.order_no = element.order_no;
