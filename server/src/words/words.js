@@ -1,5 +1,5 @@
-var dbConfig = require('./db-config');
-var common = require('./common-util');
+var dbConfig = require('../db-config');
+var common = require('../common-util');
 var wordsModel = require('./words-model');
 
 var getWords = (id, callback) => {
