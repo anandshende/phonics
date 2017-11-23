@@ -1,42 +1,46 @@
-var dbConfig = require('../db-config');
-var common = require('../common-util');
-var wordsModel = require('./words-model');
+var wordsUtil = require('./word-utils');
 
-var getWords = (id, callback) => {
-    var sql = "SELECT * FROM words WHERE phoneme_id=" + id + ";";
-    dbConfig.getResultSet(sql, (result) => {
-        callback(wordsModel.extractWord(result));
+var getWordsList = (req, callback) => {
+    var params = req.params;
+    wordsUtil.getWordsList(params.id, (wordsList) => {
+        callback(wordsList);
     });
 };
 
-var getWordDetails = () => {
-    var op = 'get word details';
-    console.log(op);
-    return op;
+var getWordDetails = (req, callback) => {
+    var params = req.params;
+    wordsUtil.getWordDetails(params.id, (wordsList) => {
+        callback(wordsList);
+    });
 };
 
-var addWord = () => {
-    var op = 'add word';
-    console.log(op);
-    return op;
+var addWord = (req, callback) => {
+    var params = req.params;
+    var body = req.body;
+    wordsUtil.addWord(params.id, body.name, (wordsList) => {
+        callback(wordsList);
+    });
 };
 
-var orderWords = () => {
-    var op = 'order words';
-    console.log(op);
-    return op;
+var updateWord = (req, callback) => {
+    var params = req.params;
+    var body = req.body;
+    wordsUtil.updateWord(params.wordId, params.id, body.name, body.orderNo, (wordsList) => {
+        callback(wordsList);
+    });
 };
 
-var deleteWord = () => {
-    var op = 'delete word';
-    console.log(op);
-    return op;
+var deleteWord = (req, callback) => {
+    var params = req.params;
+    wordsUtil.deleteWord(params.wordId, params.id, (wordsList) => {
+        callback(wordsList);
+    });
 };
 
 module.exports = {
-    getWords: getWords,
+    getWordsList: getWordsList,
     getWordDetails: getWordDetails,
     addWord: addWord,
-    orderWords: orderWords,
+    updateWord: updateWord,
     deleteWord: deleteWord
 };

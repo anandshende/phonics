@@ -40,35 +40,39 @@ module.exports = (app) => {
 
     app.get('/phoneme/:id', (req, res) => {
         // Get Words
-        words.getWords(req.params.id, (result) => {
-            var string = "";
-            result.forEach(element => {
-                string = string + element.name + "  ";
-            });
-            res.end(string);
+        words.getWordsList(req, (wordsDto) => {
+            res.send({wordsDto: wordsDto});
         });
     });
 
     app.get('/phoneme/:id/:wordId', (req, res) => {
         // Get Word Details
-        res.end(words.getWordDetails().toString());
+        words.getWordDetails(req, (wordsDto) => {
+            res.send({wordsDto: wordsDto});
+        });
     });
 
     app.post('/phoneme/:id', (req, res) => {
         // Add Word
         // phoneme_id, name
-        res.end(words.addWord().toString());
+        words.addWord(req, (wordsDto) => {
+            res.send({wordsDto: wordsDto});
+        });
     });
 
     app.put('/phoneme/:id/:wordId', (req, res) => {
         // Update Words 
         // id, phoneme_id, name, order_no
-        res.end(words.orderWords().toString());
+        words.updateWord(req, (wordsDto) => {
+            res.send({wordsDto: wordsDto});
+        });
     });
 
     app.delete('/phoneme/:id/:wordId', (req, res) => {
         // Delete Words
         // id, phoneme_id
-        res.end(words.deleteWord().toString());
+        words.deleteWord(req, (wordsDto) => {
+            res.send({wordsDto: wordsDto});
+        });
     });
 };

@@ -17,7 +17,8 @@ var addPhoneme = (req, callback) => {
 
 var updatePhoneme = (req, callback) => {
     var params = req.params;
-    phonemeUtil.updatePhoneme(params.id, params.name, params.orderNo, (resultSet) => {
+    var body = req.body;
+    phonemeUtil.updatePhoneme(params.id, body.name, body.orderNo, (resultSet) => {
         callback(resultSet);
     });
 };

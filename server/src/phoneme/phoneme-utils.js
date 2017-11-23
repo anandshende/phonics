@@ -10,7 +10,7 @@ var getPhonemes = (callback) => {
 }
 
 var addPhoneme = (name, callback) => {
-    var sql = `CALL add_word(${name})`;
+    var sql = `CALL add_phoneme("${name}")`;
     dbConfig.getResultSet(sql, (result) => {
         getPhonemes((result) => {
             callback(result);
@@ -27,8 +27,8 @@ var deletePhoneme = (id, callback) => {
     });
 }
 
-var updatePhoneme = (id, name, orderNo) => {
-    var sql = `CALL update_phoneme(${id}, ${name}, ${orderNo})`;
+var updatePhoneme = (id, name, orderNo, callback) => {
+    var sql = `CALL update_phoneme(${id}, "${name}", ${orderNo})`;
     dbConfig.getResultSet(sql, () => {
         getPhonemes((result) => {
             callback(result);
