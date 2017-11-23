@@ -10,22 +10,16 @@ var getPhonemes = (callback) => {
 }
 
 var addPhoneme = (name, callback) => {
-    var sql = "SELECT max(order_no) as max from phonemes";
+    var sql = `CALL add_word(${name})`;
     dbConfig.getResultSet(sql, (result) => {
-        result.forEach((element) => {
-            var max = element.max;
-            sql = "insert into phonemes (order_no, name) values (" + (max + 1) + ", '" + name + "' )";
-            dbConfig.getResultSet(sql, (result) => {
-                getPhonemes((result) => {
-                    callback(result);
-                });
-            });
+        getPhonemes((result) => {
+            callback(result);
         });
     });
 }
 
 var deletePhoneme = (id, callback) => {
-    var sql = "DELETE from phonemes where id=" + id;
+    var sql = `CALL delete_phoneme(${id})`;
     dbConfig.getResultSet(sql, () => {
         getPhonemes((result) => {
             callback(result);
@@ -33,8 +27,18 @@ var deletePhoneme = (id, callback) => {
     });
 }
 
+var updatePhoneme = (id, name, orderNo) => {
+    var sql = `CALL update_phoneme(${id}, ${name}, ${orderNo})`;
+    dbConfig.getResultSet(sql, () => {
+        getPhonemes((result) => {
+            callback(result);
+        });
+    });
+};
+
 module.exports = {
     getPhonemes: getPhonemes,
     addPhoneme: addPhoneme,
-    deletePhoneme: deletePhoneme
+    deletePhoneme: deletePhoneme,
+    updatePhoneme: updatePhoneme
 };

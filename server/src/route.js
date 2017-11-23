@@ -12,20 +12,23 @@ module.exports = (app) => {
 
     app.post('/phoneme', (req, res) => {
         // Add Phoneme
-        phoneme.addPhonemeList(req, (phonemeDto) => {
+        // requires 'name'
+        phoneme.addPhoneme(req, (phonemeDto) => {
             res.send({ phoneme: phonemeDto });
         })
     });
 
     app.put('/phoneme/:id', (req, res) => {
-        // Order Phoneme's List
-
-        res.end(phoneme.orderPhonemeList().toString());
+        // Update Phoneme
+        // requires 'id', 'name', 'order_no'
+        phoneme.updatePhoneme(req, (phonemeDto) => {
+            res.send({ phoneme: phonemeDto });
+        })
     });
 
     app.delete('/phoneme/:id', (req, res) => {
         // Delete Phonemes
-
+        // requires 'id'
         phoneme.deletePhoneme(req, (phonemeDto) => {
             res.send({ phoneme: phonemeDto });
         });
@@ -37,7 +40,6 @@ module.exports = (app) => {
 
     app.get('/phoneme/:id', (req, res) => {
         // Get Words
-
         words.getWords(req.params.id, (result) => {
             var string = "";
             result.forEach(element => {
@@ -49,24 +51,24 @@ module.exports = (app) => {
 
     app.get('/phoneme/:id/:wordId', (req, res) => {
         // Get Word Details
-
         res.end(words.getWordDetails().toString());
     });
 
     app.post('/phoneme/:id', (req, res) => {
         // Add Word
+        // phoneme_id, name
         res.end(words.addWord().toString());
     });
 
     app.put('/phoneme/:id/:wordId', (req, res) => {
-        // Order Words 
-
+        // Update Words 
+        // id, phoneme_id, name, order_no
         res.end(words.orderWords().toString());
     });
 
     app.delete('/phoneme/:id/:wordId', (req, res) => {
         // Delete Words
-
+        // id, phoneme_id
         res.end(words.deleteWord().toString());
     });
 };

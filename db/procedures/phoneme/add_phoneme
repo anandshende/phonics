@@ -1,0 +1,15 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_phoneme`(
+	IN `name` VARCHAR(50)
+
+
+)
+LANGUAGE SQL
+NOT DETERMINISTIC
+CONTAINS SQL
+SQL SECURITY DEFINER
+COMMENT 'Adds Phonemes'
+BEGIN
+declare max_order int;
+select max(phonics.phonemes.order_no) into max_order from phonics.phonemes;
+insert into phonics.phonemes(order_no, name) values (max_order + 1, name);
+END

@@ -1,0 +1,17 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_word`(
+	IN `phoneme_id` INT,
+	IN `name` VARCHAR(50)
+
+
+)
+LANGUAGE SQL
+NOT DETERMINISTIC
+CONTAINS SQL
+SQL SECURITY DEFINER
+COMMENT 'Adds Words'
+BEGIN
+declare max_order_no int;
+
+select count(phonics.words.order_no) into max_order_no from phonics.words where phonics.words.phoneme_id=phoneme_id;
+insert into phonics.words (phonics.words.order_no, phonics.words.name, phonics.words.phoneme_id) values (max_order_no, name, phoneme_id);
+END

@@ -1,0 +1,19 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_phoneme`(
+	IN `id` INT
+
+
+
+
+)
+LANGUAGE SQL
+NOT DETERMINISTIC
+CONTAINS SQL
+SQL SECURITY DEFINER
+COMMENT 'Deletes Phonemes using id'
+BEGIN
+declare delete_order_no int;
+delete from phonics.words where phonics.words.phoneme_id=id;
+select phonics.phonemes.order_no into delete_order_no from phonics.phonemes where phonics.phonemes.id=id;
+delete from phonics.phonemes WHERE phonics.phonemes.id=id;
+UPDATE phonics.phonemes set phonics.phonemes.order_no=phonics.phonemes.order_no-1 where phonics.phonemes.order_no>delete_order_no;
+END

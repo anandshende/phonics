@@ -1,0 +1,16 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_word`(
+	IN `id` INT,
+	IN `phoneme_id` INT
+
+)
+LANGUAGE SQL
+NOT DETERMINISTIC
+CONTAINS SQL
+SQL SECURITY DEFINER
+COMMENT 'Delete Words'
+BEGIN
+declare order_no int;
+select phonics.words.order_no into order_no from phonics.words where phonics.words.phoneme_id=phoneme_id and phonics.words.id=id;
+delete from phonics.words where phonics.words.phoneme_id=phoneme_id and phonics.words.id=id;
+update phonics.words set phonics.words.order_no=phonics.words.order_no-1 where phonics.words.order_no>order_no and phonics.words.phoneme_id=phoneme_id;
+END

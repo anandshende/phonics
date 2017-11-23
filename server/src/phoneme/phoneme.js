@@ -8,21 +8,17 @@ var getPhonemeList = (callback) => {
     });
 };
 
-var addPhonemeList = (req, callback) => {
+var addPhoneme = (req, callback) => {
     var body = req.body;
     phonemeUtil.addPhoneme(body.name, (resultSet) => {
         callback(resultSet);
     });
 };
 
-var orderPhonemeList = () => {
+var updatePhoneme = (req, callback) => {
     var params = req.params;
-    var sql = "update phonemes set order_no=order_no+1 where id> (Select order_no from phonemes where id=" + params.id + ")";
-    dbConfig.getResultSet(sql, (result) => {
-        sql = ""
-        dbConfig.getResultSet(sql, (result) => {
-            callback('1 row affected');
-        });
+    phonemeUtil.updatePhoneme(params.id, params.name, params.orderNo, (resultSet) => {
+        callback(resultSet);
     });
 };
 
@@ -35,7 +31,7 @@ var deletePhoneme = (req, callback) => {
 
 module.exports = {
     getPhonemeList: getPhonemeList,
-    addPhonemeList: addPhonemeList,
-    orderPhonemeList: orderPhonemeList,
+    addPhoneme: addPhoneme,
+    updatePhoneme: updatePhoneme,
     deletePhoneme: deletePhoneme
 };
