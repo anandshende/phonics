@@ -1,10 +1,15 @@
+body {
+    background-image: url('../images/background.jpg');
+    font-family: cursive;
+}
+
 .mainContainer {
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    box-shadow: 2px 0 20px darkcyan;
+    /* box-shadow: 2px 0 20px darkcyan; */
 }
 
 .leftPanel {
@@ -12,7 +17,7 @@
     width: 20%;
     height: 100%;
     left: 0px;
-    box-shadow: 2px 0 20px darkcyan;
+    /* box-shadow: 2px 0 20px darkcyan; */
 }
 
 .rightPanel {
@@ -42,6 +47,11 @@
 
 .phonemesContainer {
     margin-top: 20px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 20%;
 }
 
 .wordElement {
@@ -63,4 +73,22 @@
 .wordList {
     margin-left: 40px;
     margin-top: 20px;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+}
+
+.topBar {
+    position: absolute;
+    top: 0;
+    height: 50px;
+    width: 100%;
+}
+
+.panels {
+    position: absolute;
+    top: 50px;
+    bottom: 10px;
+    left: 0;
+    right: 0;
 }
