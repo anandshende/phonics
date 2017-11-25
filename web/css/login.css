@@ -1,0 +1,99 @@
+body {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    font-family: cursive;
+    background-image: url('../images/background.jpg');
+}
+
+.outerContainer {
+    display: table;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+
+.centerModal {
+    display: table-cell;
+    vertical-align: middle;
+    height: 500px;
+    width: 500px;
+}
+
+.titleBar {
+    height: 100px;
+    width: 500px;
+    background: #888a88;
+    margin: auto;
+    display: table;
+}
+
+.modalBody {
+    height: 400px;
+    width: 500px;
+    background: #5c5d5b;
+    margin: auto;
+    display: table;
+}
+
+.title {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.loginBody {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.header {
+    font-weight: bold;
+    color: lightgray;
+    font-size: 22px;
+}
+
+.textBox {
+    height: 25px;
+    margin-bottom: 35px;
+    width: 300px;
+    color: #6a6d66;
+}
+
+.buttonClass {
+    margin-top: 50px;
+    height: 40px;
+    width: 150px;
+    outline: none;
+    background: #d3d3d3;
+    border: #d3d3d3;
+    color: #6a6d66;
+}
+
+.buttonClass:hover {
+    background: #888a88;
+    color: lightgray;
+}
+
+::-webkit-input-placeholder { 
+    color:    #6a6d66;
+}
+:-moz-placeholder { 
+   color:    #6a6d66;
+   opacity:  1;
+}
+::-moz-placeholder { 
+   color:    #6a6d66;
+   opacity:  1;
+}
+:-ms-input-placeholder { 
+   color:    #6a6d66;
+}
+::-ms-input-placeholder { 
+   color:    #6a6d66;
+}
+
+::placeholder { 
+   color:    #6a6d66;
+}
