@@ -9,7 +9,6 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
-    /* box-shadow: 2px 0 20px darkcyan; */
 }
 
 .leftPanel {
@@ -17,7 +16,6 @@ body {
     width: 20%;
     height: 100%;
     left: 0px;
-    /* box-shadow: 2px 0 20px darkcyan; */
 }
 
 .rightPanel {
@@ -44,6 +42,7 @@ body {
     margin-left: 10px;
     margin-right: 30px;
     margin-bottom: 10px;
+    cursor: pointer;
 }
 
 .phonemesContainer {
@@ -64,6 +63,7 @@ body {
     margin-right: 10px;
     text-align: center;
     display: table;
+    cursor: pointer;
 }
 
 .innerWordElement {
@@ -93,4 +93,31 @@ body {
     bottom: 10px;
     left: 0;
     right: 0;
+}
+
+.tabContainer {
+    color: cyan;
+    display: table;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+
+.tabs {
+    display: inline-block;
+    margin: auto;
+}
+
+.tab {
+    float: left;
+    cursor: pointer;
+}
+
+.innerTabContainer {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.lastTab {
+    margin-left: 50px;
 }
