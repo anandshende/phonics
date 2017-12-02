@@ -1,7 +1,7 @@
 var PhonemeModel = function() {
     this.id;
     this.timestamp;
-    this.order_no;
+    this.orderNo;
     this.name;
 };
 
@@ -11,7 +11,7 @@ var extractPhoneme = (result) => {
         var phonemeModel = new PhonemeModel();
         phonemeModel.id = element.id;
         phonemeModel.name = element.name;
-        phonemeModel.order_no = element.order_no;
+        phonemeModel.orderNo = element.order_no;
         phonemeModel.timestamp = element.timestamp;
         extractedData.push(phonemeModel);
     });

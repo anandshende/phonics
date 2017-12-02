@@ -2,7 +2,7 @@ var dbConfig = require('../db-config');
 var phonemeModel = require('./phoneme-model');
 
 var getPhonemes = (callback) => {
-    var sql = "SELECT * FROM phonemes";
+    var sql = "SELECT * FROM phonemes ORDER BY `order_no` ASC";
     dbConfig.getResultSet(sql, (result) => {
         var extractedResults = phonemeModel.extractPhoneme(result);
         callback(extractedResults);
