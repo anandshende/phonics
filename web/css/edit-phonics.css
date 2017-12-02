@@ -16,6 +16,7 @@ body {
     top: 0;
     height: 50px;
     width: 100%;
+    border-bottom: 1px solid cyan;
 }
 
 .panels {
@@ -36,14 +37,16 @@ body {
     width: 20%;
     height: 100%;
     float: left;
+    border-left: 1px solid cyan;
 }
 
 .rightPanel {
-    width: 60%;
+    width: 59.7%;
     height: 100%;
     float: left;
     display: table;
     text-align: center;
+    border-left: 1px solid cyan;
 }
 
 .clr {
@@ -82,4 +85,31 @@ body {
     height: 300px;
     margin: auto;
     background: #5c5d5b;
+}
+
+.tabContainer {
+    color: cyan;
+    display: table;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+
+.tabs {
+    display: inline-block;
+    margin: auto;
+}
+
+.tab {
+    float: left;
+    cursor: pointer;
+}
+
+.innerTabContainer {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.lastTab {
+    margin-left: 50px;
 }
