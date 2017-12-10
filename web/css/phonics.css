@@ -45,6 +45,14 @@ body {
     cursor: pointer;
 }
 
+.phonemeElement:hover {
+    background: #4f987f;
+}
+
+.phonemeElementSelected {
+    background: #4f987f;
+}
+
 .phonemesContainer {
     margin-top: 20px;
     position: absolute;

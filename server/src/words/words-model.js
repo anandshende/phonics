@@ -3,7 +3,7 @@ var WordsModel = function() {
     this.timestamp;
     this.orderNo;
     this.name;
-    this.phoneme_id;
+    this.phonemeId;
 }
 
 var extractWord = (result) => {
@@ -14,7 +14,7 @@ var extractWord = (result) => {
         wordsModel.name = element.name;
         wordsModel.orderNo = element.order_no;
         wordsModel.timestamp = element.timestamp;
-        wordsModel.phoneme_id = element.phoneme_id;
+        wordsModel.phonemeId = element.phoneme_id;
         extractedData.push(wordsModel);
     });
     return extractedData;

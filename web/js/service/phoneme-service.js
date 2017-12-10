@@ -1,7 +1,17 @@
-var PhonicsService = {
-    getPhonemes: () => {
+var PhonemeService = {
+
+    getPhonemes: (callback) => {
         var url = AppConfig.baseUrl;
-        var xmlHttp = RequestProcessor.getRequest(url, PhonicsService.printResults);
+        RequestProcessor.getRequest(url, (phonemeJSON) => {
+            var output = [];
+            phonemeObj = phonemeJSON.phoneme;
+            phonemeObj.forEach(function (element, index) {
+                var phonemeModel = new PhonemeModel();
+                phonemeModel.toModel(element);
+                output.push(phonemeModel);
+            });
+            callback(output);
+        });
     },
 
     addPhoneme: (data) => {

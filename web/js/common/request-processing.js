@@ -5,7 +5,7 @@ var RequestProcessor = {
         xmlHttp.open("GET", url, true);
         xmlHttp.onreadystatechange = () => {
             if (xmlHttp.readyState == 4) {
-                callback(xmlHttp);
+                callback(JSON.parse(xmlHttp.responseText));
             }
         }
         xmlHttp.send(null);
