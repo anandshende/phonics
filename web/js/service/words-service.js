@@ -1,40 +1,67 @@
 var WordsService = {
-    getWords: (id, callback) => {
-        var url = AppConfig.baseUrl + '/' + id;
-        //var xmlHttp = RequestProcessor.getRequest(url, PhonicsService.printResults);
-        RequestProcessor.getRequest(url, (wordsJSON) => {
-            var output = [];
-            wordsObj = wordsJSON.wordsDto;
-            wordsObj.forEach(function (element, index) {
-                var wordModel = new WordModel();
-                wordModel.toModel(element);
-                output.push(wordModel);
+    getWords: function (id, callback) {
+        var _self = this;
+        return new Promise(function (resolve, reject) {
+            var url = AppConfig.baseUrl + '/' + id;
+            RequestProcessor.getRequest(url).then((wordJSON) => {
+                resolve(_self.extractWords(wordJSON));
             });
-            callback(output);
         });
     },
 
-    getWordDetails: (id, wordId) => {
-        var url = AppConfig.baseUrl + '/' + id + '/' + wordId;
-        var xmlHttp = RequestProcessor.getRequest(url, PhonicsService.printResults);
+    getWordDetails: function (id, wordId) {
+        var _self = this;
+        return new Promise(function (resolve, reject) {
+            var url = AppConfig.baseUrl + '/' + id + '/' + wordId;
+            RequestProcessor.getRequest(url).then((wordJSON) => {
+                resolve(_self.extractWords(wordJSON));
+            });
+        });
     },
 
-    addWord: (id, data) => {
-        var url = AppConfig.baseUrl + '/' + id;
-        var xmlHttp = RequestProcessor.postRequest(url, data, PhonicsService.printResults);
+    addWord: function (id, data) {
+        var _self = this;
+        return new Promise(function (resolve, reject) {
+            var url = AppConfig.baseUrl + '/' + id;
+            RequestProcessor.postRequest(url, data).then((wordJSON) => {
+                resolve(_self.extractWords(wordJSON));
+            });
+        });
     },
 
-    updateWord: (id, wordId, data) => {
-        var url = AppConfig.baseUrl + '/' + id + '/' + wordId;
-        var xmlHttp = RequestProcessor.putRequest(url, data, PhonicsService.printResults);
+    updateWord: function (id, wordId, data) {
+        var _self = this;
+        return new Promise(function (resolve, reject) {
+            var url = AppConfig.baseUrl + '/' + id + '/' + wordId;
+            RequestProcessor.putRequest(url, data).then((wordJSON) => {
+                resolve(_self.extractWords(wordJSON));
+            });
+        });
     },
 
-    deletePhoneme: (id, wordId) => {
-        var url = AppConfig.baseUrl + '/' + id + '/' + wordId;
-        var xmlHttp = RequestProcessor.deleteRequest(url, PhonicsService.printResults);
+    deleteWord: function (id, wordId) {
+        var _self = this;
+        return new Promise(function (resolve, reject) {
+            var url = AppConfig.baseUrl + '/' + id + '/' + wordId;
+            RequestProcessor.deleteRequest(url).then((wordJSON) => {
+                resolve(_self.extractWords(wordJSON));
+            });
+        });
     },
 
-    printResults: (xmlHttp) => {
+    printResults: function (xmlHttp) {
         console.log(xmlHttp.responseText);
-    }
+    },
+
+    extractWords: function (wordJSON) {
+        var output = [];
+        wordObj = wordJSON.words;
+        wordObj.forEach(function (element, index) {
+            var wordModel = new WordModel();
+            wordModel.toModel(element);
+            output.push(wordModel);
+        });
+        return output;
+    },
+
 };

@@ -8,9 +8,11 @@ var WordModel = function () {
 WordModel.prototype.toModel = function (wordObj) {
     this.id = wordObj.id;
     this.name = wordObj.name;
-    this.orderNo = wordObj.orderNo;    
+    this.orderNo = wordObj.orderNo;
     this.phonemeId = wordObj.phonemeId;
 };
 
 WordModel.prototype.toJson = function (wordObj) {
+    this.name = wordObj.name;
+    this.orderNo = wordObj.orderNo;
 };

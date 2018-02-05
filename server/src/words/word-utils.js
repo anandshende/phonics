@@ -2,7 +2,7 @@ var dbConfig = require('../db-config');
 var wordsModel = require('./words-model');
 
 var getWordsList = (id, callback) => {
-    var sql = "SELECT * FROM words WHERE phoneme_id=" + id + ";";
+    var sql = "SELECT * FROM words WHERE phoneme_id=" + id + "  ORDER BY `order_no` ASC;";
     dbConfig.getResultSet(sql, (result) => {
         callback(wordsModel.extractWord(result));
     });

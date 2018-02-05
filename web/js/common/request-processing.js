@@ -1,46 +1,56 @@
 var RequestProcessor = {
 
-    getRequest: (url, callback) => {
-        var xmlHttp = new XMLHttpRequest();
-        xmlHttp.open("GET", url, true);
-        xmlHttp.onreadystatechange = () => {
-            if (xmlHttp.readyState == 4) {
-                callback(JSON.parse(xmlHttp.responseText));
+    getRequest: (url) => {
+        return new Promise(function (resolve, reject) {
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open("GET", url, true);
+            xmlHttp.onreadystatechange = () => {
+                if (xmlHttp.readyState == 4) {
+                    resolve(JSON.parse(xmlHttp.responseText));
+                }
             }
-        }
-        xmlHttp.send(null);
+            xmlHttp.send(null);
+        });
     },
-    
-    postRequest: (url, data, callback) => {
-        var xmlHttp = new XMLHttpRequest();
-        xmlHttp.open("POST", url, true);
-        xmlHttp.onreadystatechange = () => {
-            if (xmlHttp.readyState == 4) {
-                callback(xmlHttp);
+
+    postRequest: (url, data) => {
+        return new Promise(function (resolve, reject) {
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open("POST", url, true);
+            xmlHttp.onreadystatechange = () => {
+                if (xmlHttp.readyState == 4) {
+                    resolve(JSON.parse(xmlHttp.responseText));
+                }
             }
-        }
-        xmlHttp.send(data);
+            xmlHttp.setRequestHeader('Content-Type', 'application/json');
+            xmlHttp.send(JSON.stringify(data));
+        });
     },
-    
-    putRequest: (url, data, callback) => {
-        var xmlHttp = new XMLHttpRequest();
-        xmlHttp.open("PUT", url, true);
-        xmlHttp.onreadystatechange = () => {
-            if (xmlHttp.readyState == 4) {
-                callback(xmlHttp);
+
+    putRequest: (url, data) => {
+        return new Promise(function (resolve, reject) {
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open("PUT", url, true);
+            xmlHttp.onreadystatechange = () => {
+                if (xmlHttp.readyState == 4) {
+                    resolve(JSON.parse(xmlHttp.responseText));
+                }
             }
-        }
-        xmlHttp.send(data);
+            xmlHttp.setRequestHeader('Content-Type', 'application/json');
+            xmlHttp.send(JSON.stringify(data));
+        });
     },
-    
-    deleteRequest: (url, callback) => {
-        var xmlHttp = new XMLHttpRequest();
-        xmlHttp.open("DELETE", url, true);
-        xmlHttp.onreadystatechange = () => {
-            if (xmlHttp.readyState == 4) {
-                callback(xmlHttp);
+
+    deleteRequest: (url) => {
+        return new Promise(function (resolve, reject) {
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open("DELETE", url, true);
+            xmlHttp.onreadystatechange = () => {
+                if (xmlHttp.readyState == 4) {
+                    resolve(JSON.parse(xmlHttp.responseText));
+                }
             }
-        }
-        xmlHttp.send(null);
+            xmlHttp.send(null);
+        });
     }
 };

@@ -41,14 +41,14 @@ module.exports = (app) => {
     app.get('/phoneme/:id', (req, res) => {
         // Get Words
         words.getWordsList(req, (wordsDto) => {
-            res.send({wordsDto: wordsDto});
+            res.send({ words: wordsDto });
         });
     });
 
     app.get('/phoneme/:id/:wordId', (req, res) => {
         // Get Word Details
         words.getWordDetails(req, (wordsDto) => {
-            res.send({wordsDto: wordsDto});
+            res.send({ words: wordsDto });
         });
     });
 
@@ -56,7 +56,7 @@ module.exports = (app) => {
         // Add Word
         // phoneme_id, name
         words.addWord(req, (wordsDto) => {
-            res.send({wordsDto: wordsDto});
+            res.send({ words: wordsDto });
         });
     });
 
@@ -64,7 +64,7 @@ module.exports = (app) => {
         // Update Words 
         // id, phoneme_id, name, order_no
         words.updateWord(req, (wordsDto) => {
-            res.send({wordsDto: wordsDto});
+            res.send({ words: wordsDto });
         });
     });
 
@@ -72,7 +72,7 @@ module.exports = (app) => {
         // Delete Words
         // id, phoneme_id
         words.deleteWord(req, (wordsDto) => {
-            res.send({wordsDto: wordsDto});
+            res.send({ words: wordsDto });
         });
     });
 };
