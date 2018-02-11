@@ -3,5 +3,6 @@ var EventNames = {
     WordSelected: 'WordSelected',
     UpdatePhonemeList: 'UpdatePhonemeList',
     UpdateWordList: 'UpdateWordList',
-    RenderPhonemes: 'RenderPhonemes'
+    RenderPhonemes: 'RenderPhonemes',
+    TriggerPhonemeClick: 'TriggerPhonemeClick'
 };

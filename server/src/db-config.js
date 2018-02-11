@@ -1,4 +1,5 @@
 var mysql = require('mysql');
+var commonUtil = require('./common-util');
 
 const con = mysql.createConnection({
     host: "localhost",
@@ -12,9 +13,10 @@ con.connect((err) => {
 });
 
 var getResultSet = (sql, callback) => {
-    return con.query(sql, (err, result, fields) => {
-        if (err) throw err;
-        callback(result);
+    return new Promise(function (resolve, reject) {
+        con.query(sql, (err, result, fields) => {
+            (commonUtil.isDefined(err)) ? reject(err) : resolve(result);
+        });
     });
 };
 

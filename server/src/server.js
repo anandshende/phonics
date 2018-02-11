@@ -10,6 +10,11 @@ app.listen(port, () => {
     console.log("Started server at port: " + port);
 });
 
+app.use(function (err, req, res, next) {
+    console.error(err.stack)
+    res.status(500).send('Something broke!');
+})
+
 require('./route')(app);
 
 

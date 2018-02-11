@@ -181,12 +181,14 @@ var EditPhonics = {
         var updateWord = new WordModel();
         EditPhonics.wordModel.name = document.getElementById(PhonicsIds.txtWordName).value;
         EditPhonics.wordModel.orderNo = parseInt(document.getElementById(PhonicsIds.wordDropDown).value) + 1;
+        let phonemeId = EditPhonics.wordModel.phonemeId;
 
         updateWord.toJson(EditPhonics.wordModel);
         WordsService.updateWord(EditPhonics.wordModel.phonemeId, EditPhonics.wordModel.id, updateWord)
             .then(function (words) {
                 console.log(words);
                 PhonicsUtil.broadcastEvent(EventNames.UpdateWordList, words);
+                PhonicsUtil.broadcastEvent(EventNames.TriggerPhonemeClick, phonemeId);
             })
     },
 

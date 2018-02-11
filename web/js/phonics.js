@@ -14,6 +14,7 @@ var Phonics = {
     registerEvents: function () {
         document.addEventListener(EventNames.UpdatePhonemeList, this.updatePhonemeList);
         document.addEventListener(EventNames.UpdateWordList, this.updateWordList);
+        document.addEventListener(EventNames.TriggerPhonemeClick, this.triggerPhonemeClick);
     },
 
     removeAllChildren: function (id) {
@@ -33,6 +34,19 @@ var Phonics = {
         Phonics.removeAllChildren(PhonicsIds.wordList);
         Phonics.renderWords(event.detail);
         PhonicsUtil.broadcastEvent(EventNames.RenderPhonemes);
+    },
+
+    triggerPhonemeClick(event) {
+        var phonemeId = event.detail;
+        var ul = document.getElementById(PhonicsIds.phonemeList);
+        for (li of ul.childNodes) {
+            if (PhonicsUtil.isDefined(li.dataset) && PhonicsUtil.isDefined(li.dataset.id)) {
+                if (li.dataset.id == phonemeId) {
+                    li.click();
+                    break;
+                }
+            }
+        }
     },
 
     renderPhonemes: function (phonemes) {

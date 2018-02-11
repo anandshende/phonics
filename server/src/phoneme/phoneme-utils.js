@@ -1,38 +1,68 @@
 var dbConfig = require('../db-config');
 var phonemeModel = require('./phoneme-model');
 
-var getPhonemes = (callback) => {
-    var sql = "SELECT * FROM phonemes ORDER BY `order_no` ASC";
-    dbConfig.getResultSet(sql, (result) => {
-        var extractedResults = phonemeModel.extractPhoneme(result);
-        callback(extractedResults);
+var getPhonemes = () => {
+    return new Promise(function (resolve, reject) {
+        var sql = "SELECT * FROM phonemes ORDER BY `order_no` ASC";
+        dbConfig.getResultSet(sql)
+            .then((result) => {
+                var extractedResults = phonemeModel.extractPhoneme(result);
+                resolve(extractedResults);
+            })
+            .catch((error) => {
+                reject(error);
+            });
     });
 }
 
 var addPhoneme = (name, callback) => {
-    var sql = `CALL add_phoneme("${name}")`;
-    dbConfig.getResultSet(sql, (result) => {
-        getPhonemes((result) => {
-            callback(result);
-        });
+    return new Promise(function (resolve, reject) {
+        var sql = `CALL add_phoneme("${name}")`;
+        dbConfig.getResultSet(sql)
+            .then((result) => {
+                getPhonemes()
+                    .then((getResult) => {
+                        var extractedResults = phonemeModel.extractPhoneme(getResult);
+                        resolve(extractedResults);
+                    })
+            })
+            .catch((error) => {
+                reject(error);
+            });
     });
 }
 
 var deletePhoneme = (id, callback) => {
-    var sql = `CALL delete_phoneme(${id})`;
-    dbConfig.getResultSet(sql, () => {
-        getPhonemes((result) => {
-            callback(result);
-        });
+    return new Promise(function (resolve, reject) {
+        var sql = `CALL delete_phoneme(${id})`;
+        dbConfig.getResultSet(sql)
+            .then((result) => {
+                getPhonemes()
+                    .then((getResult) => {
+                        var extractedResults = phonemeModel.extractPhoneme(getResult);
+                        resolve(extractedResults);
+                    })
+            })
+            .catch((error) => {
+                reject(error);
+            });
     });
 }
 
 var updatePhoneme = (id, name, orderNo, callback) => {
-    var sql = `CALL update_phoneme(${id}, "${name}", ${orderNo})`;
-    dbConfig.getResultSet(sql, () => {
-        getPhonemes((result) => {
-            callback(result);
-        });
+    return new Promise(function (resolve, reject) {
+        var sql = `CALL update_phoneme(${id}, "${name}", ${orderNo})`;
+        dbConfig.getResultSet(sql)
+            .then((result) => {
+                getPhonemes()
+                    .then((getResult) => {
+                        var extractedResults = phonemeModel.extractPhoneme(getResult);
+                        resolve(extractedResults);
+                    })
+            })
+            .catch((error) => {
+                reject(error);
+            });
     });
 };
 

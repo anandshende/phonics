@@ -1,40 +1,71 @@
 var dbConfig = require('../db-config');
 var wordsModel = require('./words-model');
 
-var getWordsList = (id, callback) => {
-    var sql = "SELECT * FROM words WHERE phoneme_id=" + id + "  ORDER BY `order_no` ASC;";
-    dbConfig.getResultSet(sql, (result) => {
-        callback(wordsModel.extractWord(result));
+var getWordsList = (phonemeId) => {
+    return new Promise(function (resolve, reject) {
+        var sql = "SELECT * FROM words WHERE phoneme_id=" + phonemeId + "  ORDER BY `order_no` ASC;";
+        dbConfig.getResultSet(sql)
+            .then((result) => {
+                var extractedResults = wordsModel.extractWord(result);
+                resolve(extractedResults);
+            })
+            .catch((error) => {
+                reject(error);
+            });
     });
 };
 
-var getWordDetails = (id, callback) => {
+var getWordDetails = (phonemeId) => {
 };
 
 var addWord = (phonemeId, name, callback) => {
-    var sql = `CALL add_word(${phonemeId},"${name}")`;
-    dbConfig.getResultSet(sql, (result) => {
-        getWordsList(phonemeId, (result) => {
-            callback(result);
-        });
+    return new Promise(function (resolve, reject) {
+        var sql = `CALL add_word(${phonemeId},"${name}")`;
+        dbConfig.getResultSet(sql)
+            .then((result) => {
+                getWordsList(phonemeId)
+                    .then((getResult) => {
+                        var extractedResults = wordsModel.extractWord(getResult);
+                        resolve(extractedResults);
+                    })
+            })
+            .catch((error) => {
+                reject(error);
+            });
     });
 };
 
-var updateWord = (id, phonemeId, name, orderNo, callback) => {
-    var sql = `CALL update_word(${id}, ${phonemeId},"${name}", ${orderNo})`;
-    dbConfig.getResultSet(sql, (result) => {
-        getWordsList(phonemeId, (result) => {
-            callback(result);
-        });
+var updateWord = (wordId, phonemeId, name, orderNo, callback) => {
+    return new Promise(function (resolve, reject) {
+        var sql = `CALL update_word(${wordId}, ${phonemeId},"${name}", ${orderNo})`;
+        dbConfig.getResultSet(sql)
+            .then((result) => {
+                getWordsList(phonemeId)
+                    .then((getResult) => {
+                        var extractedResults = wordsModel.extractWord(getResult);
+                        resolve(extractedResults);
+                    })
+            })
+            .catch((error) => {
+                reject(error);
+            });
     });
 };
 
-var deleteWord = (id, phonemeId, callback) => {
-    var sql = `CALL delete_word(${id}, ${phonemeId})`;
-    dbConfig.getResultSet(sql, (result) => {
-        getWordsList(phonemeId, (result) => {
-            callback(result);
-        });
+var deleteWord = (wordId, phonemeId, callback) => {
+    return new Promise(function (resolve, reject) {
+        var sql = `CALL delete_word(${wordId}, ${phonemeId})`;
+        dbConfig.getResultSet(sql)
+            .then((result) => {
+                getWordsList(phonemeId)
+                    .then((getResult) => {
+                        var extractedResults = wordsModel.extractWord(getResult);
+                        resolve(extractedResults);
+                    })
+            })
+            .catch((error) => {
+                reject(error);
+            });
     });
 };
 
