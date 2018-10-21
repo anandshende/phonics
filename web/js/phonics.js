@@ -26,7 +26,7 @@ var Phonics = {
 
     updatePhonemeList: function (event) {
         Phonics.removeAllChildren(PhonicsIds.phonemeList);
-        Phonics.renderPhonemes(event.detail);
+        Phonics.renderPhonicsWords(event.detail);
         PhonicsUtil.broadcastEvent(EventNames.RenderPhonemes);
     },
 
