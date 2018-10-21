@@ -1,9 +1,9 @@
 var PhonicsService = {
 
-    getTwoLetterPhonicsWords: function () {
+    getWordsWithLengthConstraints: function (number) {
         var _self = this;
         return new Promise(function (resolve, reject) {
-            var url = AppConfig.baseUrl + '/phonics/twoLetter';
+            var url = AppConfig.baseUrl + '/phonics/length/' + number;
             RequestProcessor.getRequest(url).then((phonemeJSON) => {
                 resolve(_self.extractPhonicsWords(phonemeJSON));
             });

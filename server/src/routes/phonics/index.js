@@ -2,8 +2,8 @@ const phonicsRoutes = require('express').Router();
 const phonics = require('../../phonics/phonics');
 const sendErrorResponse = require('../../common-util').sendErrorResponse;
 
-phonicsRoutes.get('/twoLetter', (req, res) => {
-    phonics.getTwoLetterWords(req)
+phonicsRoutes.get('/length/:number', (req, res) => {
+    phonics.getWordsWithLengthConstraints(req)
         .then((phonicsDto) => {
             res.send({ phonics: phonicsDto });
         })

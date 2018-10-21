@@ -2,7 +2,7 @@ var Phonics = {
 
     init: function () {
         let _self = this;
-        PhonicsService.getTwoLetterPhonicsWords().then((phonemes) => {
+        PhonicsService.getWordsWithLengthConstraints(WORDS_LENGTH).then((phonemes) => {
             _self.renderPhonicsWords(phonemes);
             PhonicsModel.setPhonemes(phonemes);
         });

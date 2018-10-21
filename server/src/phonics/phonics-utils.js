@@ -1,12 +1,18 @@
 var dbConfig = require('../db-config');
 var phonicsModel = require('./phonics-model')
 
-var getTwoLetterWords = () => {
+var getWordsWithLengthConstraints = (number) => {
     return new Promise(function (resolve, reject) {
-        var sql = `select phonemes.id, phonemes.name from phonemes where LENGTH(phonemes.name) <= 2 
-                    UNION
-                    select words.id, words.name from words where LENGTH(words.name) <= 2;`;
-                    
+        if (number > 3) {
+            sql = `select phonemes.id, phonemes.name from phonemes where LENGTH(phonemes.name) >= ${number}`
+            sql += ` UNION `;
+            sql += `select words.id, words.name from words where LENGTH(words.name) >= ${number};`;
+        } else {
+            var sql = `select phonemes.id, phonemes.name from phonemes where LENGTH(phonemes.name) = ${number}`;
+            sql += ` UNION `;
+            sql += `select words.id, words.name from words where LENGTH(words.name) = ${number};`;
+        }
+
         dbConfig.getResultSet(sql)
             .then((result) => {
                 var extractedResults = phonicsModel.extractPhonics(result);
@@ -19,5 +25,5 @@ var getTwoLetterWords = () => {
 }
 
 module.exports = {
-    getTwoLetterWords
+    getWordsWithLengthConstraints
 };
