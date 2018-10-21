@@ -1,5 +1,6 @@
 var wordsUtil = require('./word-utils');
 var customError = require('../custom-error');
+var commonUtil = require('../common-util');
 
 var getWordsList = (req) => {
     return new Promise(function (resolve, reject) {

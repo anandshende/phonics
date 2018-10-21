@@ -3,9 +3,10 @@ var commonUtil = require('./common-util');
 
 const con = mysql.createConnection({
     host: "localhost",
-    user: "anand",
-    password: "1workbook",
-    database: "phonics"
+    user: "phonics_user",
+    password: "password",
+    database: "phonics",
+    insecureAuth : true
 });
 con.connect((err) => {
     if (err) throw err;

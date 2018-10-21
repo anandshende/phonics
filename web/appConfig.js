@@ -1,4 +1,4 @@
 var AppConfig = {
-    baseUrl: "http://localhost.workapps.com/phoneme",
+    baseUrl: "http://localhost.example.com:2000/phoneme",
     adminKey: 'phonics-isAdmin'
 };
