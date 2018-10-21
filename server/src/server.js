@@ -1,5 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var routes = require('./routes');
 
 var app = express();
 app.use(bodyParser.json());
@@ -20,8 +21,9 @@ app.use(function (err, req, res, next) {
     res.status(500).send('Something broke!');
 })
 
+app.use('/', routes);
 
-require('./route')(app);
+// require('./route')(app);
 
 
 module.exports.app = app;

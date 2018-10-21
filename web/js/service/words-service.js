@@ -2,7 +2,7 @@ var WordsService = {
     getWords: function (id, callback) {
         var _self = this;
         return new Promise(function (resolve, reject) {
-            var url = AppConfig.baseUrl + '/' + id;
+            var url = AppConfig.baseUrl + '/words/' + id;
             RequestProcessor.getRequest(url).then((wordJSON) => {
                 resolve(_self.extractWords(wordJSON));
             });
@@ -12,7 +12,7 @@ var WordsService = {
     getWordDetails: function (id, wordId) {
         var _self = this;
         return new Promise(function (resolve, reject) {
-            var url = AppConfig.baseUrl + '/' + id + '/' + wordId;
+            var url = AppConfig.baseUrl + '/words/' + id + '/' + wordId;
             RequestProcessor.getRequest(url).then((wordJSON) => {
                 resolve(_self.extractWords(wordJSON));
             });
@@ -22,7 +22,7 @@ var WordsService = {
     addWord: function (id, data) {
         var _self = this;
         return new Promise(function (resolve, reject) {
-            var url = AppConfig.baseUrl + '/' + id;
+            var url = AppConfig.baseUrl + '/words/' + id;
             RequestProcessor.postRequest(url, data).then((wordJSON) => {
                 resolve(_self.extractWords(wordJSON));
             });
@@ -32,7 +32,7 @@ var WordsService = {
     updateWord: function (id, wordId, data) {
         var _self = this;
         return new Promise(function (resolve, reject) {
-            var url = AppConfig.baseUrl + '/' + id + '/' + wordId;
+            var url = AppConfig.baseUrl + '/words/' + id + '/' + wordId;
             RequestProcessor.putRequest(url, data).then((wordJSON) => {
                 resolve(_self.extractWords(wordJSON));
             });
@@ -42,7 +42,7 @@ var WordsService = {
     deleteWord: function (id, wordId) {
         var _self = this;
         return new Promise(function (resolve, reject) {
-            var url = AppConfig.baseUrl + '/' + id + '/' + wordId;
+            var url = AppConfig.baseUrl + '/words/' + id + '/' + wordId;
             RequestProcessor.deleteRequest(url).then((wordJSON) => {
                 resolve(_self.extractWords(wordJSON));
             });

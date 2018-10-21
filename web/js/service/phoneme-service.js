@@ -3,7 +3,7 @@ var PhonemeService = {
     getPhonemes: function () {
         var _self = this;
         return new Promise(function (resolve, reject) {
-            var url = AppConfig.baseUrl;
+            var url = AppConfig.baseUrl + '/phoneme/';
             RequestProcessor.getRequest(url).then((phonemeJSON) => {
                 resolve(_self.extractPhonemes(phonemeJSON));
             });
@@ -13,7 +13,7 @@ var PhonemeService = {
     addPhoneme: function (data) {
         var _self = this;
         return new Promise(function (resolve, reject) {
-            var url = AppConfig.baseUrl;
+            var url = AppConfig.baseUrl + '/phoneme/';
             RequestProcessor.postRequest(url, data).then((phonemeJSON) => {
                 resolve(_self.extractPhonemes(phonemeJSON));
             });
@@ -23,7 +23,7 @@ var PhonemeService = {
     updatePhoneme: function (id, data) {
         var _self = this;
         return new Promise(function (resolve, reject) {
-            var url = AppConfig.baseUrl + '/' + id;
+            var url = AppConfig.baseUrl + '/phoneme/' + '/' + id;
             RequestProcessor.putRequest(url, data).then((phonemeJSON) => {
                 resolve(_self.extractPhonemes(phonemeJSON));
             });
@@ -33,7 +33,7 @@ var PhonemeService = {
     deletePhoneme: function (id) {
         var _self = this;
         return new Promise(function (resolve, reject) {
-            var url = AppConfig.baseUrl + '/' + id;
+            var url = AppConfig.baseUrl + '/phoneme/' + '/' + id;
             RequestProcessor.deleteRequest(url).then((phonemeJSON) => {
                 resolve(_self.extractPhonemes(phonemeJSON));
             });

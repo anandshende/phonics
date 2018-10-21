@@ -151,8 +151,8 @@ var Phonics = {
     },
 
     handleClicks: function () {
-        document.getElementById(PhonicsIds.firstTab).onclick = this.openFirstLink;
-        document.getElementById(PhonicsIds.secondTab).onclick = this.openSecondLink;
+        // document.getElementById(PhonicsIds.firstTab).onclick = this.openFirstLink;
+        // document.getElementById(PhonicsIds.secondTab).onclick = this.openSecondLink;
     },
 
     openFirstLink: function () {

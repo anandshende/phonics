@@ -1,6 +1,6 @@
-var errorHandlerFile = require('./error-handler');
-var errorHandler = errorHandlerFile.ErrorHandler();
-module.exports = (app) => {
+// var errorHandlerFile = require('./error-handler');
+// var errorHandler = errorHandlerFile.ErrorHandler();
+/* module.exports = (app) => {
 
     // Phoneme
     var phoneme = require('./phoneme/phoneme');
@@ -128,4 +128,13 @@ function sendErrorResponse(error) {
     console.log(error);
     var statusCode = errorHandler.getErrorCode(error.errno);
     return { statusCode, error };
-}
+} */
+
+var routes = require('express').Router();
+var wordRoutes = require('./words/word-routes');
+var phonemeRoutes = require('./phoneme/phoneme-routes');
+
+routes.use('/phoneme', phonemeRoutes);
+routes.use('/words', wordRoutes);
+
+module.export = routes;
