@@ -13,4 +13,15 @@ phonicsRoutes.get('/length/:number', (req, res) => {
         })
 });
 
+phonicsRoutes.get('/search/:key/:length', (req, res) => {
+    phonics.searchWordsWithKeyAndLength(req)
+        .then((phonicsDto) => {
+            res.send({ phonics: phonicsDto });
+        })
+        .catch((error) => {
+            var responseError = sendErrorResponse(error);
+            res.status(responseError.statusCode).send(responseError.error);
+        })
+});
+
 module.exports = phonicsRoutes;

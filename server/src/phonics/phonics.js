@@ -13,6 +13,21 @@ var getWordsWithLengthConstraints = (req) => {
     })
 };
 
+var searchWordsWithKeyAndLength = (req) => {
+    var key = req.params.key;
+    var length = req.params.length;
+    return new Promise(function (resolve, reject) {
+        phonicsUtil.searchWordsWithKeyAndLength(key, length)
+            .then(function (list) {
+                resolve(list);
+            })
+            .catch((error) => {
+                reject(error);
+            });
+    })
+};
+
 module.exports = {
-    getWordsWithLengthConstraints
+    getWordsWithLengthConstraints,
+    searchWordsWithKeyAndLength
 };
