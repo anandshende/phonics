@@ -21,6 +21,16 @@ var PhonicsService = {
         return output;
     },
 
+    searchWordsBasedKeyAndLength: function (key, length) {
+        var _self = this;
+        return new Promise(function (resolve, reject) {
+            var url = `${AppConfig.baseUrl}/phonics/search/${key}/${length}`;
+            RequestProcessor.getRequest(url).then((phonemeJSON) => {
+                resolve(_self.extractPhonicsWords(phonemeJSON));
+            });
+        });
+    },
+
     printResults: (xmlHttp) => {
         console.log(xmlHttp.responseText);
     }
