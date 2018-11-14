@@ -1,0 +1,22 @@
+{
+  "name": "phonics",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anandshende/phonics.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anandshende/phonics/issues"
+  },
+  "homepage": "https://github.com/anandshende/phonics#readme",
+  "devDependencies": {
+    "sass": "^1.14.3"
+  }
+}
