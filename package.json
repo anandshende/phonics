@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/anandshende/phonics#readme",
   "devDependencies": {
+    "http-server": "^0.11.1",
     "sass": "^1.14.3"
   }
 }
