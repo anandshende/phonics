@@ -1,0 +1,85 @@
+@import '../config.scss';
+
+.form-container {
+    padding-top: 30px;
+}
+ 
+.buttons-container {
+    text-align: center;
+    margin: 50px 20px 40px 20px; 
+    display: flex;
+}
+
+.text-container-box {
+    margin: 20px 20px;
+    position: relative;
+}
+
+.email-box {
+}
+
+.password-box {
+}
+
+.textbox {
+    width: 100%;
+    border: none;
+    background: none;
+    outline: none;
+    border-bottom: 1px solid $textBoxBorderBottom;
+    padding: 10px 15px;
+} 
+
+.textbox:hover, 
+.textbox:focus {
+    border-color: $textBoxFocusBorderBottom;
+} 
+
+.email-textbox {
+
+}
+
+.password-textbox {
+
+} 
+
+.label {
+    position: absolute;
+    top: 10px;  
+    left: 15px;
+    transition: all 0.5s;
+    color: $placholderColor;
+}
+
+.textbox:focus + .label,
+.textbox:valid + .label {
+    top: -10px;
+    font-size: 12px;
+}
+
+.textbox::placeholder { 
+    color: $placholderColor;
+}
+
+.buttons-inner-container {
+    flex: 1;
+}
+
+.button {
+    outline: none;
+    border: none;
+    padding: 12px 20px;
+    width: 100%;
+    background: $buttonBackground;
+    color: $buttonTextColor;
+    cursor: pointer;
+}
+
+.button:hover {
+    border: 2px solid $buttonHoverBorder;
+    padding: 10px 18px;
+}
+
+.buttons-inner-container + .buttons-inner-container {
+    margin: 0 0 0 10%;
+}

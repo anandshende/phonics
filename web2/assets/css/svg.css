@@ -1,0 +1,13 @@
+.svg-menu-icon {
+    fill: #000;
+    stroke: #000;
+}
+
+.svg-class:hover {
+    cursor: pointer;
+}
+
+.svg-class:hover .svg-menu-icon {
+    fill: #fff;
+    stroke: #fff;
+}
