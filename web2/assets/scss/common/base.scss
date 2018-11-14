@@ -1,0 +1,41 @@
+* {
+    box-sizing: border-box;
+    font-family:"berlin-sans-fb-demi-bold";   
+}
+
+body {
+    background: url(../images/background.png);
+}
+
+.main-container {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.top-bar {
+    height: 100px;
+    width: 100%;
+    border-bottom: 1px solid #000;
+    align-items: center;
+    display: flex;
+}
+
+.panels {
+    flex: 1;
+    display: flex;
+}
+
+.left-panel {
+    width: 100px;
+    height: 100%;
+    border-right: 1px solid #000;
+}
+
+.right-panel {
+    flex: 1;
+}

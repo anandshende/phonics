@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="./css/edit-phonics.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/vendor/simple-scrollbar.css">
+    <script src="./js/vendor/simple-scrollbar.js"></script>
+    <script src="./appConfig.js"></script>
+</head>
+
+<body>
+    <div class="mainContainer">
+        <div class="topBar">
+            <div class="tabContainer">
+                <div class="innerTabContainer">
+                    <div class="tabs">
+                        <div id='displayTab' class="tab">
+                            DISPLAY
+                        </div>
+                        <div id='logOut' class="tab lastTab">
+                            LOG OUT
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panels">
+            <div class="leftPanel">
+                <div class="addPhonemeContainer">
+                    <div class="addPhoneme" id="addPhoneme">Add Phoneme</div>
+                </div>
+                <div ss-container class="phonemesContainer">
+                    <ul id="phonemeList" class="phonemeList">
+                        <!-- <li class="phonemeElement">ONE</li> -->
+                    </ul>
+                </div>
+            </div>
+            <div class="middlePanel">
+                <div class="addPhonemeContainer">
+                    <div class="addPhoneme" id="addWord">Add Word</div>
+                </div>
+                <div ss-container class="wordsContainer">
+                    <div id="wordList">
+                        <!-- <div class="wordElement">
+                            <div class="innerWordElement">
+                                <span>ABCDEFGHIJ</span>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="rightPanel">
+                <div class="editContainer">
+                    <div class="titleBar">
+                        <div id="editHeading">EDIT</div>
+                        <div id="newHeading" style="display:none;">NEW</div>
+                    </div>
+                    <div id="editBody" class="editBody">
+                        <div class="editForm">
+                            <div class="formRow">
+                                <div class="formCell">
+                                    Change Phoneme Name:
+                                </div>
+                                <div class="formCell">
+                                    <input type="text" name="" id="txtPhonemeName">
+                                </div>
+                            </div>
+                            <div class="formRow">
+                                <div class="formCell">
+                                    Place Phoneme After:
+                                </div>
+                                <div class="formCell">
+                                    <select name="" id="phonemeDropDown">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="formRow">
+                                <div class="formCell">
+                                    Change Word:
+                                </div>
+                                <div class="formCell">
+                                    <input type="text" name="" id="txtWordName">
+                                </div>
+                            </div>
+                            <div class="formRow">
+                                <div class="formCell">
+                                    Place Word After:
+                                </div>
+                                <div class="formCell">
+                                    <select name="" id="wordDropDown">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-button-container">
+                            <div class="form-button">
+                                <button id="updateButton">Update</button>
+                            </div>
+                            <div class="form-button">
+                                <button id="deleteButton">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="newPhoneme" class="editBody" style="display: none;">
+                        <div class="editForm">
+                            <div class="formRow">
+                                <div class="formCell">
+                                    New Phoneme:
+                                </div>
+                                <div class="formCell">
+                                    <input type="text" name="" id="newTxtPhoneme">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-button-container">
+                            <div class="form-button">
+                                <button id="addPhonemeButton">Add Phoneme</button>
+                            </div>
+                            <div class="form-button">
+                                <button id="cancelPhonemeButton">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="newWord" class="editBody" style="display: none;">
+                        <div class="editForm">
+                            <div class="formRow">
+                                <div class="formCell">
+                                    New Word:
+                                </div>
+                                <div class="formCell">
+                                    <input type="text" name="" id="newTxtWord">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-button-container">
+                            <div class="form-button">
+                                <button id="addWordButton">Add Word</button>
+                            </div>
+                            <div class="form-button">
+                                <button id="cancelWordButton">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clr"></div>
+    </div>
+    </div>
+    <script src="./js/common/constants.js"></script>
+    <script type="text/javascript">
+        var PhonicsIds = EditPhonicsIds;
+    </script>
+    <script src="./js/common/events.js"></script>
+    <script src="./js/common/phonics-util.js"></script>
+    <script src="./js/model/phoneme-model.js"></script>
+    <script src="./js/common/request-processing.js"></script>
+    <script src="./js/service/phoneme-service.js"></script>
+    <script src="./js/model/word-model.js"></script>
+    <script src="./js/service/words-service.js"></script>
+    <script src="./js/model/phonics-model.js"></script>
+    <script src="./js/phonics.js"></script>
+    <script src="./js/edit-phonics.js"></script>
+</body>
+
+</html>
