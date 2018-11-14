@@ -121,4 +121,48 @@ body {
   padding: 8px 0;
 }
 
+.menu-overlay {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.menu-container {
+  padding-top: 40px;
+  padding-left: 20px;
+}
+
+.menu-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+}
+
+.menu-element {
+  font-size: 30px;
+  color: #6ff7f3;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+.menu-element > a {
+  text-decoration: none;
+  color: unset;
+  color: none;
+}
+
+.menu-element:hover {
+  color: #15cec9;
+}
+
+.menu-close-icon-container {
+  height: 50px;
+  margin-top: 20px;
+}
+
 /*# sourceMappingURL=phonics.css.map */

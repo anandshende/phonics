@@ -3,6 +3,11 @@
     stroke: #000;
 }
 
+.svg-close-icon {
+    stroke: rgba(111, 247, 243, 1);
+    fill: rgba(111, 247, 243, 1);
+}
+
 .svg-class:hover {
     cursor: pointer;
 }
@@ -10,4 +15,9 @@
 .svg-class:hover .svg-menu-icon {
     fill: #fff;
     stroke: #fff;
+}
+
+.svg-class:hover .svg-close-icon {
+    fill: rgba(21, 206, 201, 1);
+    stroke: rgba(21, 206, 201, 1);
 }
