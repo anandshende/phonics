@@ -26,7 +26,7 @@ var getWordsWithLengthConstraints = (number) => {
 
 var searchWordsWithKeyAndLength = (key, length) => {
     return new Promise(function (resolve, reject) {
-        if (length > 4) {
+        if (length > 3) {
             sql = `select phonemes.id, phonemes.name from phonemes where LENGTH(phonemes.name) >= ${length}`;
             sql += ` AND phonemes.name LIKE '%${key}%'`;
             sql += ` UNION `;
