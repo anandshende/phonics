@@ -94,6 +94,7 @@ body {
   color: #000;
 }
 
+.phoneme-element:hover,
 .phoneme-element-selected {
   color: #fff;
   background: #000;
