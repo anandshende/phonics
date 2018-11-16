@@ -122,71 +122,6 @@ document.onreadystatechange = function () {
 };
 
 
-// ----- ----- web2/assets/js/features/phonics-init.js ----- ----- 
-
-var Phonics = {
-    init: function () {
-        var _self = this;
-        PhonemeService.getPhonemes()
-            .then(function (response) {
-                var phonemeList = response.phoneme.map((phonemeJSON) => new PhonemeModel(phonemeJSON));
-                Render.phonemes(phonemeList, _self.onListElementClick);
-                document.getElementById(phonemeList[0].phonemeId).click();
-            })
-            .catch(function (errorResponse) {
-                console.log('error => ' + JSON.stringify(errorResponse));
-            });
-    },
-
-    onListElementClick: function () {
-        var phonemeModel = JSON.parse(this.dataset.phonemeModel);
-
-        // Set Selected Class To Current Element
-        CommonUtil.deselectPhonemes();
-        this.classList.add('phoneme-element-selected');
-
-        // GetWords
-        WordsService.getWords(phonemeModel.phonemeId)
-            .then(function (response) {
-                var wordList = response.words.map((wordJSON) => new WordModel(wordJSON));
-                Render.words(wordList, Phonics.onWordElementClick);
-            })
-            .catch(function (errorResponse) {
-                console.log('error => ' + JSON.stringify(errorResponse));
-            });
-    },
-
-    onWordElementClick: function () {
-        var wordModel = JSON.parse(this.dataset.wordModel);
-
-        // Open Pop Up
-        console.log(wordModel);
-    }
-};
-
-
-
-document.onreadystatechange = function () {
-    if (document.readyState === "complete") {
-        Phonics.init();
-    }
-};
-
-
-// ----- ----- web2/assets/js/models/phoneme-model.js ----- ----- 
-
-var PhonemeModel = function (phonemeObj) {
-    this.phonemeId = phonemeObj.id;
-    this.phonemeName = phonemeObj.name;
-    this.phonemeOrderNo = phonemeObj.orderNo;
-};
-
-PhonemeModel.prototype.toJson = function (phonemeObj) {
-    this.name = phonemeObj.phonemeName;
-    this.orderNo = phonemeObj.phonemeOrderNo;
-};
-
-
 // ----- ----- web2/assets/js/models/word-model.js ----- ----- 
 
 var WordModel = function (wordObj) {
@@ -202,17 +137,6 @@ WordModel.prototype.toJson = function (wordObj) {
 };
 
 
-// ----- ----- web2/assets/js/services/phoneme-service.js ----- ----- 
-
-var PhonemeService = {
-    getPhonemes: function () {
-        var baseUrl = AppConfig.baseUrl;
-        var url = baseUrl + '/phoneme/';
-        return ReqProcessor.GET(url);
-    }
-}
-
-
 // ----- ----- web2/assets/js/services/phonics-service.js ----- ----- 
 
 var PhonicsService = {
@@ -226,14 +150,3 @@ var PhonicsService = {
         return ReqProcessor.GET(url);
     }
 };
-
-
-// ----- ----- web2/assets/js/services/words-service.js ----- ----- 
-
-var WordsService = {
-    getWords: function (phonemeId) {
-        var baseUrl = AppConfig.baseUrl;
-        var url = baseUrl + '/words/' + phonemeId;
-        return ReqProcessor.GET(url);
-    }
-}

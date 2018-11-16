@@ -34,17 +34,8 @@
         </div>
         <div class="panels">
             <div class='right-panel'>
-                <div ss-container class="word-list">
-                    <div class="word-element">AT</div>
-                    <div class="word-element">AT</div>
-                    <div class="word-element">AT</div>
-                    <div class="word-element">AT</div>
-                    <div class="word-element">AT</div>
-                    <div class="word-element">AT</div>
-                    <div class="word-element">AT</div>
-                    <div class="word-element">AT</div>
-                    <div class="word-element">AT</div>
-                    <div class="word-element">AT</div>
+                <div ss-container class="word-list" id="wordList">
+                    <!-- <div class="word-element">AT</div> -->
                 </div>
             </div>
         </div>
@@ -73,7 +64,11 @@
             </ul>
         </div>
     </div>
-    <script src="../assets/js/phonics.js"></script>
+
+    <script>
+        WORD_LENGTH = 2;
+    </script>
+    <script src="../assets/js/lengthBasedViews.js"></script>
 </body>
 
 </html>
