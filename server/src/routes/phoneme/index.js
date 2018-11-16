@@ -6,7 +6,7 @@ phonemeRoutes.get('/', (req, res) => {
     // Get Phonemes
     phoneme.getPhonemeList()
         .then(function (phonemeDto) {
-            res.send({ phoneme: phonemeDto });
+            res.status(200).send({ phoneme: phonemeDto });
         })
         .catch((error) => {
             var responseError = sendErrorResponse(error);
@@ -19,7 +19,7 @@ phonemeRoutes.post('/', (req, res) => {
     // requires 'name'
     phoneme.addPhoneme(req)
         .then((phonemeDto) => {
-            res.send({ phoneme: phonemeDto });
+            res.status(200).send({ phoneme: phonemeDto });
         })
         .catch((error) => {
             var responseError = sendErrorResponse(error);
@@ -32,7 +32,7 @@ phonemeRoutes.put('/:id', (req, res) => {
     // requires 'id', 'name', 'order_no'
     phoneme.updatePhoneme(req)
         .then((phonemeDto) => {
-            res.send({ phoneme: phonemeDto });
+            res.status(200).send({ phoneme: phonemeDto });
         })
         .catch((error) => {
             var responseError = sendErrorResponse(error);
@@ -45,7 +45,7 @@ phonemeRoutes.delete('/:id', (req, res) => {
     // requires 'id'
     phoneme.deletePhoneme(req)
         .then((phonemeDto) => {
-            res.send({ phoneme: phonemeDto });
+            res.status(200).send({ phoneme: phonemeDto });
         })
         .catch((error) => {
             var responseError = sendErrorResponse(error);

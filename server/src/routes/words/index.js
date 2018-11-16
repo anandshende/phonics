@@ -6,7 +6,7 @@ wordRoutes.get('/:phonemeId', (req, res) => {
     // Get Words
     words.getWordsList(req)
         .then((wordsDto) => {
-            res.send({ words: wordsDto });
+            res.status(200).send({ words: wordsDto });
         })
         .catch((error) => {
             var responseError = sendErrorResponse(error);
@@ -18,7 +18,7 @@ wordRoutes.get('/:phonemeId/:wordId', (req, res) => {
     // Get Word Details
     words.getWordDetails(req)
         .then((wordsDto) => {
-            res.send({ words: wordsDto });
+            res.status(200).send({ words: wordsDto });
         })
         .catch((error) => {
             var responseError = sendErrorResponse(error);
@@ -31,7 +31,7 @@ wordRoutes.post('/:phonemeId', (req, res) => {
     // phoneme_id, name
     words.addWord(req)
         .then((wordsDto) => {
-            res.send({ words: wordsDto });
+            res.status(200).send({ words: wordsDto });
         })
         .catch((error) => {
             var responseError = sendErrorResponse(error);
@@ -44,7 +44,7 @@ wordRoutes.put('/:phonemeId/:wordId', (req, res) => {
     // phonemeId, wordId, name, order_no
     words.updateWord(req)
         .then((wordsDto) => {
-            res.send({ words: wordsDto });
+            res.status(200).send({ words: wordsDto });
         })
         .catch((error) => {
             var responseError = sendErrorResponse(error);
@@ -57,7 +57,7 @@ wordRoutes.delete('/:phonemeId/:wordId', (req, res) => {
     // phonemeId, wordId
     words.deleteWord(req)
         .then((wordsDto) => {
-            res.send({ words: wordsDto });
+            res.status(200).send({ words: wordsDto });
         })
         .catch((error) => {
             var responseError = sendErrorResponse(error);
