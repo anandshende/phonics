@@ -6,6 +6,10 @@ module.exports = function (grunt) {
                 src: ['web2/assets/js/*/*.js'],
                 dest: 'web2/assets/js/phonics.js'
             },
+            length: {
+                src: lengthBasedJSFiles,
+                dest: 'web2/assets/js/lengthBasedViews.js'
+            },
             options: {
                 process: function (src, filepath) {
                     return '\n\n' + '// ----- ----- ' + filepath + ' ----- ----- \n\n' + src;
@@ -28,3 +32,11 @@ module.exports = function (grunt) {
     grunt.registerTask('default', ['clean', 'concat', 'watch']);
 
 };
+
+var lengthBasedJSFiles = [
+    'web2/assets/js/common/**/*.js',
+    'web2/assets/js/vendor/**/*.js',
+    'web2/assets/js/features/length-based-views.js',
+    'web2/assets/js/models/word-model.js',
+    'web2/assets/js/services/phonics-service.js'
+]
