@@ -11,6 +11,7 @@ var PopUp = {
     close: function () {
         this.popUpContainer.style.visibility = 'hidden';
         this.popUpContent.classList.remove('pop-up-content-opaque');
+        delete this.popUpContent.dataset.wordModel;
     },
 
     render: function (wordModel) {

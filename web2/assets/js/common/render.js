@@ -49,7 +49,11 @@ var Render = {
     }
 };
 
-var svgCallback = function () {
+var svgCallback = function (event, iconType) {
     var menu = document.getElementById('menu');
-    menu.style.display = menu.style.display == 'block' ? 'none' : 'block';
+    if (iconType == 'close' && document.getElementById('popUpContent').dataset.wordModel) {
+        PopUp.close();
+    } else {
+        menu.style.display = menu.style.display == 'block' ? 'none' : 'block';
+    }
 };

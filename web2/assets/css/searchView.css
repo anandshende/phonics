@@ -251,6 +251,11 @@ body {
   line-height: 1;
 }
 
+.pop-up-icon-container {
+  position: absolute;
+  right: 20px;
+}
+
 .left-panel {
   width: 300px;
 }

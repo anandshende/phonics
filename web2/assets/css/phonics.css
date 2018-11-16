@@ -205,4 +205,9 @@ body {
   line-height: 1;
 }
 
+.pop-up-icon-container {
+  position: absolute;
+  right: 20px;
+}
+
 /*# sourceMappingURL=phonics.css.map */

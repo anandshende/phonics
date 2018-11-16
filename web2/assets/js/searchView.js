@@ -27,6 +27,7 @@ var PopUp = {
     close: function () {
         this.popUpContainer.style.visibility = 'hidden';
         this.popUpContent.classList.remove('pop-up-content-opaque');
+        delete this.popUpContent.dataset.wordModel;
     },
 
     render: function (wordModel) {
@@ -110,9 +111,13 @@ var Render = {
     }
 };
 
-var svgCallback = function () {
+var svgCallback = function (event, iconType) {
     var menu = document.getElementById('menu');
-    menu.style.display = menu.style.display == 'block' ? 'none' : 'block';
+    if (iconType == 'close' && document.getElementById('popUpContent').dataset.wordModel) {
+        PopUp.close();
+    } else {
+        menu.style.display = menu.style.display == 'block' ? 'none' : 'block';
+    }
 };
 
 
