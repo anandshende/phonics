@@ -93,16 +93,19 @@ var ReqProcessor = {
 }
 
 
-// ----- ----- web2/assets/js/features/length-based-views.js ----- ----- 
+// ----- ----- web2/assets/js/features/search-view-init.js ----- ----- 
 
-var LengthBasedViews = {
+var SearchView = {
     init: function () {
-        PhonicsService.getWordsWithLengthConstraints(WORD_LENGTH)
+        var searchKey = document.getElementById('searchKey').value;
+        var searchLength = document.getElementById('searchLength').value;
+
+        PhonicsService.searchWordsBasedKeyAndLength(searchKey, searchLength)
             .then((response) => {
                 var wordList = response.phonics.map((wordJSON) => new WordModel(wordJSON));
-                Render.words(wordList, LengthBasedViews.onWordElementClick);
+                Render.words(wordList, SearchView.onWordElementClick);
             }).catch((errorResponse) => {
-                console.log("errorResponse = " + JSON.stringify(errorResponse));
+                console.log('errorResponse = ' + JSON.stringify(errorResponse));
             });
     },
 
@@ -111,12 +114,6 @@ var LengthBasedViews = {
 
         // Open Pop Up
         console.log(wordModel);
-    }
-};
-
-document.onreadystatechange = function () {
-    if (document.readyState === "complete") {
-        LengthBasedViews.init();
     }
 };
 

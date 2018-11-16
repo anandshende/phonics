@@ -132,6 +132,7 @@ body {
   left: 15px;
   transition: all 0.5s;
   color: #999999;
+  cursor: text;
 }
 
 .textbox:focus + .label,

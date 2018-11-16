@@ -27,36 +27,27 @@
         </div>
         <div class="panels">
             <div class="left-panel">
-                <form>
+                <div>
                     <div class="form-container">
                         <div class="text-container-box email-box">
-                            <input id="usernameBox" required class="textbox email-textbox" type="text">
-                            <label class="label" for="usernameBox">Searching Key</label>
+                            <input id="searchKey" required class="textbox email-textbox" type="text">
+                            <label class="label" for="searchKey">Searching Key</label>
                         </div>
                         <div class="text-container-box password-box">
-                            <input id="passwordBox" required class="textbox password-textbox" type="text">
-                            <label class="label" for="passwordBox">Word Length</label>
+                            <input id="searchLength" required class="textbox password-textbox" type="text">
+                            <label class="label" for="searchLength">Word Length</label>
                         </div>
                         <div class="buttons-container">
                             <div class="buttons-inner-container">
-                                <button type="submit" class="button">Submit</button>
+                                <button onclick="SearchView.init()" class="button">Submit</button>
                             </div>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
             <div class='right-panel'>
-                <div ss-container class="word-list">
-                    <div class="word-element">Ticket</div>
-                    <div class="word-element">Ticket</div>
-                    <div class="word-element">Ticket</div>
-                    <div class="word-element">Ticket</div>
-                    <div class="word-element">Ticket</div>
-                    <div class="word-element">Ticket</div>
-                    <div class="word-element">Ticket</div>
-                    <div class="word-element">Ticket</div>
-                    <div class="word-element">Ticket</div>
-                    <div class="word-element">Ticket</div>
+                <div ss-container class="word-list" id="wordList">
+                    <!-- <div class="word-element">Ticket</div> -->
                 </div>
             </div>
         </div>
@@ -85,7 +76,7 @@
             </ul>
         </div>
     </div>
-    <script src="./assets/js/phonics.js"></script>
+    <script src="./assets/js/searchView.js"></script>
 </body>
 
 </html>

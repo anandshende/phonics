@@ -99,7 +99,6 @@ var LengthBasedViews = {
     init: function () {
         PhonicsService.getWordsWithLengthConstraints(WORD_LENGTH)
             .then((response) => {
-                console.log("Success = " + JSON.stringify(response));
                 var wordList = response.phonics.map((wordJSON) => new WordModel(wordJSON));
                 Render.words(wordList, LengthBasedViews.onWordElementClick);
             }).catch((errorResponse) => {
@@ -169,6 +168,31 @@ var Phonics = {
 document.onreadystatechange = function () {
     if (document.readyState === "complete") {
         Phonics.init();
+    }
+};
+
+
+// ----- ----- web2/assets/js/features/search-view-init.js ----- ----- 
+
+var SearchView = {
+    init: function () {
+        var searchKey = document.getElementById('searchKey').value;
+        var searchLength = document.getElementById('searchLength').value;
+
+        PhonicsService.searchWordsBasedKeyAndLength(searchKey, searchLength)
+            .then((response) => {
+                var wordList = response.phonics.map((wordJSON) => new WordModel(wordJSON));
+                Render.words(wordList, SearchView.onWordElementClick);
+            }).catch((errorResponse) => {
+                console.log('errorResponse = ' + JSON.stringify(errorResponse));
+            });
+    },
+
+    onWordElementClick: function () {
+        var wordModel = JSON.parse(this.dataset.wordModel);
+
+        // Open Pop Up
+        console.log(wordModel);
     }
 };
 

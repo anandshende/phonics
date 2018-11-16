@@ -49,6 +49,7 @@
     left: 15px;
     transition: all 0.5s;
     color: $placholderColor;
+    cursor: text; 
 }
 
 .textbox:focus + .label,

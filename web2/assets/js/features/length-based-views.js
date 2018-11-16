@@ -2,7 +2,6 @@ var LengthBasedViews = {
     init: function () {
         PhonicsService.getWordsWithLengthConstraints(WORD_LENGTH)
             .then((response) => {
-                console.log("Success = " + JSON.stringify(response));
                 var wordList = response.phonics.map((wordJSON) => new WordModel(wordJSON));
                 Render.words(wordList, LengthBasedViews.onWordElementClick);
             }).catch((errorResponse) => {
