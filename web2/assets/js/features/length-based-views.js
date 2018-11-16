@@ -13,7 +13,7 @@ var LengthBasedViews = {
         var wordModel = JSON.parse(this.dataset.wordModel);
 
         // Open Pop Up
-        console.log(wordModel);
+        PopUp.open(wordModel);
     }
 };
 

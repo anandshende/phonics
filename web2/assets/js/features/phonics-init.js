@@ -19,7 +19,7 @@ var Phonics = {
         CommonUtil.deselectPhonemes();
         this.classList.add('phoneme-element-selected');
 
-        // GetWords
+        // GetWords 
         WordsService.getWords(phonemeModel.phonemeId)
             .then(function (response) {
                 var wordList = response.words.map((wordJSON) => new WordModel(wordJSON));
@@ -34,7 +34,7 @@ var Phonics = {
         var wordModel = JSON.parse(this.dataset.wordModel);
 
         // Open Pop Up
-        console.log(wordModel);
+        PopUp.open(wordModel);
     }
 };
 
