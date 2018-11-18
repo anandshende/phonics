@@ -17,6 +17,11 @@ var PopUp = {
     render: function (wordModel) {
         this.popUpContent.dataset.wordModel = JSON.stringify(wordModel);
         document.getElementById('fitTextContainer').innerHTML = this.getInnerHTML(wordModel.wordName);
+        if(wordModel.wordName.length > 3) {
+            popUpContent.style.width = "1000px";
+        } else {
+            popUpContent.style.width = "500px";
+        }
         fitty('.pop-up-text-container', {
             multiLine: false
         });

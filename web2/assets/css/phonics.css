@@ -44,6 +44,11 @@ body {
 
 .right-panel {
   flex: 1;
+  padding: 0 10px 0 50px;
+}
+
+.ss-scroll {
+  background: rgba(6, 88, 85, 0.925);
 }
 
 .top-bar-vertical-center {
@@ -77,6 +82,7 @@ body {
 
 .phonemes-container {
   padding-top: 20px;
+  height: 100%;
 }
 
 .phoneme-list {
@@ -100,8 +106,16 @@ body {
   background: #000;
 }
 
+.word-list-container {
+  padding: 20px 0 0 0;
+  height: 100%;
+  width: 100%;
+}
+
 .word-list {
-  margin: 20px 0 0 50px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .word-element {

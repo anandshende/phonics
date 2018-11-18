@@ -16,6 +16,6 @@ var SearchView = {
         var wordModel = JSON.parse(this.dataset.wordModel);
 
         // Open Pop Up
-        PopUp.open();
+        PopUp.open(wordModel);
     }
 };

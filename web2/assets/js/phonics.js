@@ -33,6 +33,11 @@ var PopUp = {
     render: function (wordModel) {
         this.popUpContent.dataset.wordModel = JSON.stringify(wordModel);
         document.getElementById('fitTextContainer').innerHTML = this.getInnerHTML(wordModel.wordName);
+        if(wordModel.wordName.length > 3) {
+            popUpContent.style.width = "1000px";
+        } else {
+            popUpContent.style.width = "500px";
+        }
         fitty('.pop-up-text-container', {
             multiLine: false
         });
@@ -242,7 +247,7 @@ var SearchView = {
         var wordModel = JSON.parse(this.dataset.wordModel);
 
         // Open Pop Up
-        PopUp.open();
+        PopUp.open(wordModel);
     }
 };
 
@@ -316,3 +321,130 @@ var WordsService = {
 // ----- ----- web2/assets/js/vendor/fitty.js ----- ----- 
 
 !function(e,t){if("function"==typeof define&&define.amd)define(["module","exports"],t);else if("undefined"!=typeof exports)t(module,exports);else{var n={exports:{}};t(n,n.exports),e.fitty=n.exports}}(this,function(e,t){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var D=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var i in n)Object.prototype.hasOwnProperty.call(n,i)&&(e[i]=n[i])}return e};t.default=function(n){if(n){var i=function(e){return[].slice.call(e)},r={IDLE:0,DIRTY_CONTENT:1,DIRTY_LAYOUT:2,DIRTY:3},o=[],e=null,u="requestAnimationFrame"in n?function(){n.cancelAnimationFrame(e),e=n.requestAnimationFrame(function(){a(o.filter(function(e){return e.dirty}))})}:function(){},t=function(t){return function(){o.forEach(function(e){e.dirty=t}),u()}},a=function(e){e.filter(function(e){return!e.styleComputed}).forEach(function(e){e.styleComputed=f(e)}),e.filter(d).forEach(p);var t=e.filter(s);t.forEach(c),t.forEach(function(e){p(e),l(e)}),t.forEach(m)},l=function(e){return e.dirty=r.IDLE},c=function(e){e.availableWidth=e.element.parentNode.clientWidth,e.currentWidth=e.element.scrollWidth,e.previousFontSize=e.currentFontSize,e.currentFontSize=Math.min(Math.max(e.minSize,e.availableWidth/e.currentWidth*e.previousFontSize),e.maxSize),e.whiteSpace=e.multiLine&&e.currentFontSize===e.minSize?"normal":"nowrap"},s=function(e){return e.dirty!==r.DIRTY_LAYOUT||e.dirty===r.DIRTY_LAYOUT&&e.element.parentNode.clientWidth!==e.availableWidth},f=function(e){var t=n.getComputedStyle(e.element,null);e.currentFontSize=parseInt(t.getPropertyValue("font-size"),10),e.display=t.getPropertyValue("display"),e.whiteSpace=t.getPropertyValue("white-space")},d=function(e){var t=!1;return!e.preStyleTestCompleted&&(/inline-/.test(e.display)||(t=!0,e.display="inline-block"),"nowrap"!==e.whiteSpace&&(t=!0,e.whiteSpace="nowrap"),e.preStyleTestCompleted=!0,t)},p=function(e){e.originalStyle||(e.originalStyle=e.element.getAttribute("style")||""),e.element.style.cssText=e.originalStyle+";white-space:"+e.whiteSpace+";display:"+e.display+";font-size:"+e.currentFontSize+"px"},m=function(e){e.element.dispatchEvent(new CustomEvent("fit",{detail:{oldValue:e.previousFontSize,newValue:e.currentFontSize,scaleFactor:e.currentFontSize/e.previousFontSize}}))},v=function(e,t){return function(){e.dirty=t,u()}},y=function(e){e.newbie=!0,e.dirty=!0,o.push(e)},h=function(t){return function(){o=o.filter(function(e){return e.element!==t.element}),t.observeMutations&&t.observer.disconnect(),t.element.style.cssText=t.originalStyle}},S=function(e){e.observeMutations&&(e.observer=new MutationObserver(v(e,r.DIRTY_CONTENT)),e.observer.observe(e.element,e.observeMutations))},b={minSize:16,maxSize:512,multiLine:!0,observeMutations:"MutationObserver"in n&&{subtree:!0,childList:!0,characterData:!0}},w=null,T=function(){n.clearTimeout(w),w=n.setTimeout(t(r.DIRTY_LAYOUT),g.observeWindowDelay)},z=["resize","orientationchange"];return Object.defineProperty(g,"observeWindow",{set:function(e){var t=(e?"add":"remove")+"EventListener";z.forEach(function(e){n[t](e,T)})}}),g.observeWindow=!0,g.observeWindowDelay=100,g.fitAll=t(r.DIRTY),g}function F(e,t){var n=D({},b,t),i=e.map(function(e){var t=D({},n,{element:e});return y(t),S(t),{element:e,fit:v(t,r.DIRTY),unsubscribe:h(t)}});return u(),i}function g(e){var t=1<arguments.length&&void 0!==arguments[1]?arguments[1]:{};return"string"==typeof e?F(i(document.querySelectorAll(e)),t):F([e],t)[0]}}("undefined"==typeof window?null:window),e.exports=t.default});
+
+
+
+// ----- ----- web2/assets/js/vendor/simple-scrollbar.js ----- ----- 
+
+(function(w, d) {
+  var raf = w.requestAnimationFrame || w.setImmediate || function(c) { return setTimeout(c, 0); };
+
+  function initEl(el) {
+    if (Object.prototype.hasOwnProperty.call(el, 'data-simple-scrollbar')) return;
+    Object.defineProperty(el, 'data-simple-scrollbar', new SimpleScrollbar(el));
+  }
+
+  // Mouse drag handler
+  function dragDealer(el, context) {
+    var lastPageY;
+
+    el.addEventListener('mousedown', function(e) {
+      lastPageY = e.pageY;
+      el.classList.add('ss-grabbed');
+      d.body.classList.add('ss-grabbed');
+
+      d.addEventListener('mousemove', drag);
+      d.addEventListener('mouseup', stop);
+
+      return false;
+    });
+
+    function drag(e) {
+      var delta = e.pageY - lastPageY;
+      lastPageY = e.pageY;
+
+      raf(function() {
+        context.el.scrollTop += delta / context.scrollRatio;
+      });
+    }
+
+    function stop() {
+      el.classList.remove('ss-grabbed');
+      d.body.classList.remove('ss-grabbed');
+      d.removeEventListener('mousemove', drag);
+      d.removeEventListener('mouseup', stop);
+    }
+  }
+
+  // Constructor
+  function ss(el) {
+    this.target = el;
+
+    this.direction = w.getComputedStyle(this.target).direction;
+
+    this.bar = '<div class="ss-scroll">';
+
+    this.wrapper = d.createElement('div');
+    this.wrapper.setAttribute('class', 'ss-wrapper');
+
+    this.el = d.createElement('div');
+    this.el.setAttribute('class', 'ss-content');
+
+    if (this.direction === 'rtl') {
+      this.el.classList.add('rtl');
+    }
+
+    this.wrapper.appendChild(this.el);
+
+    while (this.target.firstChild) {
+      this.el.appendChild(this.target.firstChild);
+    }
+    this.target.appendChild(this.wrapper);
+
+    this.target.insertAdjacentHTML('beforeend', this.bar);
+    this.bar = this.target.lastChild;
+
+    dragDealer(this.bar, this);
+    this.moveBar();
+
+    w.addEventListener('resize', this.moveBar.bind(this));
+    this.el.addEventListener('scroll', this.moveBar.bind(this));
+    this.el.addEventListener('mouseenter', this.moveBar.bind(this));
+
+    this.target.classList.add('ss-container');
+
+    var css = w.getComputedStyle(el);
+  	if (css['height'] === '0px' && css['max-height'] !== '0px') {
+    	el.style.height = css['max-height'];
+    }
+  }
+
+  ss.prototype = {
+    moveBar: function(e) {
+      var totalHeight = this.el.scrollHeight,
+          ownHeight = this.el.clientHeight,
+          _this = this;
+
+      this.scrollRatio = ownHeight / totalHeight;
+
+      var isRtl = _this.direction === 'rtl';
+      var right = isRtl ?
+        (_this.target.clientWidth - _this.bar.clientWidth + 18) :
+        (_this.target.clientWidth - _this.bar.clientWidth) * -1;
+
+      raf(function() {
+        // Hide scrollbar if no scrolling is possible
+        if(_this.scrollRatio >= 1) {
+          _this.bar.classList.add('ss-hidden')
+        } else {
+          _this.bar.classList.remove('ss-hidden')
+          _this.bar.style.cssText = 'height:' + Math.max(_this.scrollRatio * 100, 10) + '%; top:' + (_this.el.scrollTop / totalHeight ) * 100 + '%;right:' + right + 'px;';
+        }
+      });
+    }
+  }
+
+  function initAll() {
+    var nodes = d.querySelectorAll('*[ss-container]');
+
+    for (var i = 0; i < nodes.length; i++) {
+      initEl(nodes[i]);
+    }
+  }
+
+  d.addEventListener('DOMContentLoaded', initAll);
+  ss.initEl = initEl;
+  ss.initAll = initAll;
+
+  w.SimpleScrollbar = ss;
+})(window, document);
