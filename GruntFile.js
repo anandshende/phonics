@@ -3,7 +3,7 @@ module.exports = function (grunt) {
     grunt.initConfig({
         concat: {
             phonicsHTML: {
-                src: ['web2/assets/js/*/*.js'],
+                src: phonicsJSFiles,
                 dest: 'web2/assets/js/phonics.js'
             },
             length: {
@@ -13,6 +13,10 @@ module.exports = function (grunt) {
             searchView: {
                 src: searchViewJSFiles,
                 dest: 'web2/assets/js/searchView.js'
+            },
+            searchPhonemes: {
+                src: searchPhonemesJSFiles,
+                dest: 'web2/assets/js/searchPhonemes.js'
             },
             options: {
                 process: function (src, filepath) {
@@ -42,6 +46,14 @@ var CommonJSFiles = [
     'web2/assets/js/vendor/**/*.js',
 ];
 
+var phonicsJSFiles = [
+    ...CommonJSFiles,
+    'web2/assets/js/models/*.js',
+    'web2/assets/js/features/phonics-init.js',
+    'web2/assets/js/services/phoneme-service.js',
+    'web2/assets/js/services/words-service.js'
+];
+
 var lengthBasedJSFiles = [
     ...CommonJSFiles,
     'web2/assets/js/features/length-based-views.js',
@@ -54,4 +66,12 @@ var searchViewJSFiles = [
     'web2/assets/js/features/search-view-init.js',
     'web2/assets/js/models/word-model.js',
     'web2/assets/js/services/phonics-service.js'
+];
+
+var searchPhonemesJSFiles = [
+    ...CommonJSFiles,
+    'web2/assets/js/features/search-phonemes-init.js',
+    'web2/assets/js/models/*.js',
+    'web2/assets/js/services/phoneme-service.js',
+    'web2/assets/js/services/words-service.js'
 ];
