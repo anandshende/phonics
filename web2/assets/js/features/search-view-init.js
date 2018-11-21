@@ -5,6 +5,10 @@ var SearchView = {
 
         PhonicsService.searchWordsBasedKeyAndLength(searchKey, searchLength)
             .then((response) => {
+                if (response.phonics && response.phonics.length == 0) {
+                    Render.emptySearchResult();
+                    return;
+                }
                 var wordList = response.phonics.map((wordJSON) => new WordModel(wordJSON));
                 Render.words(wordList, SearchView.onWordElementClick);
             }).catch((errorResponse) => {

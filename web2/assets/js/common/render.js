@@ -46,6 +46,12 @@ var Render = {
             // Append List Element
             wordListElement.append(wordDivElement);
         });
+    },
+
+    emptySearchResult: function () {
+        var divContainer = document.createElement('div');
+        divContainer.innerText = 'No Results Found';
+        document.getElementById('wordList').appendChild(divContainer);
     }
 };
 

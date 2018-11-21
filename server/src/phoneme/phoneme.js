@@ -63,7 +63,7 @@ var deletePhoneme = (req) => {
     return new Promise(function (resolve, reject) {
         if (!commonUtil.isDefined(req.params))
             reject(new customError.customError('custom_0003'));
-        if (!commonUtil.isDefined(req.params.id) || req.params.id == "undefined" )
+        if (!commonUtil.isDefined(req.params.id) || req.params.id == "undefined")
             reject(new customError.customError('custom_0002', ['id']));
 
         var params = req.params;
@@ -77,9 +77,24 @@ var deletePhoneme = (req) => {
     })
 };
 
+var searchPhoneme = (req) => {
+    return new Promise(function (resolve, reject) {
+        var key = req.params.key;
+        console.log('key = '+ key);
+        phonemeUtil.searchPhonemes(key)
+            .then(function (phonemeList) {
+                resolve(phonemeList);
+            })
+            .catch((error) => {
+                reject(error);
+            });
+    })
+};
+
 module.exports = {
-    getPhonemeList: getPhonemeList,
-    addPhoneme: addPhoneme,
-    updatePhoneme: updatePhoneme,
-    deletePhoneme: deletePhoneme
+    getPhonemeList,
+    addPhoneme,
+    updatePhoneme,
+    deletePhoneme,
+    searchPhoneme
 };

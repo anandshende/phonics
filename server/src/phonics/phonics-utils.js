@@ -5,7 +5,7 @@ var getWordsWithLengthConstraints = (number) => {
     return new Promise(function (resolve, reject) {
         var sql = "";
         if (number > 3) {
-            sql = `select * from words where LENGTH(words.name) >= ${number};`;
+            sql = `select * from words where LENGTH(words.name) >= ${number} Order by Length(words.name);`;
         } else {
             sql = `select * from words where LENGTH(words.name) = ${number};`;
         }

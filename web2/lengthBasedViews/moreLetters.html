@@ -6,10 +6,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-     <link rel="stylesheet" href="../assets/css/vendor/simple-scrollbar.css">
+    <link rel="stylesheet" href="../assets/css/vendor/simple-scrollbar.css">
     <link href="../assets/css/length-based-views.css" rel="stylesheet">
 
-     
+
     <script src="../appConfig.js"></script>
 
 </head>
@@ -40,25 +40,7 @@
         <div class="menu-icon-container menu-close-icon-container">
             <object class="menu-icon" data="../assets/icons/close.svg" type="image/svg+xml"></object>
         </div>
-        <div class="menu-container">
-            <ul class="menu-list">
-                <li class="menu-element">
-                    <a href="../phonics.html">Phonemes List</a>
-                </li>
-                <li class="menu-element">
-                    <a href="../searchView.html">Search By Keyword</a>
-                </li>
-                <li class="menu-element">
-                    <a href="./twoLetters.html">Two Letter Words</a>
-                </li>
-                <li class="menu-element">
-                    <a href="./threeLetters.html">Three Letter Words</a>
-                </li>
-                <li class="menu-element">
-                    <a href="./moreLetters.html">Four Or More Letter Words</a>
-                </li>
-            </ul>
-        </div>
+        <div class="menu-container" w3-include-html="/menu-template.html"></div>
     </div>
 
     <!-- Pop Core Logic -->

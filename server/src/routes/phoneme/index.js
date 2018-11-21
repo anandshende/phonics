@@ -53,4 +53,15 @@ phonemeRoutes.delete('/:id', (req, res) => {
         })
 });
 
+phonemeRoutes.get('/search/:key', (req, res) => {
+    phoneme.searchPhoneme(req)
+        .then(function (phonemeDto) {
+            res.status(200).send({ phoneme: phonemeDto });
+        })
+        .catch((error) => {
+            var responseError = sendErrorResponse(error);
+            res.status(responseError.statusCode).send(responseError.error);
+        });
+});
+
 module.exports = phonemeRoutes;
