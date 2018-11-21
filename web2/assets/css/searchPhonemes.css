@@ -317,4 +317,12 @@ body {
   margin-top: 30px;
 }
 
+.word-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  max-height: 100%;
+  flex-direction: column;
+}
+
 /*# sourceMappingURL=searchPhonemes.css.map */
