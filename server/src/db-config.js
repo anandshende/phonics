@@ -6,7 +6,7 @@ const con = mysql.createConnection({
     user: "phonics_user",
     password: "password",
     database: "phonics",
-    insecureAuth : true
+    insecureAuth: true
 });
 con.connect((err) => {
     if (err) throw err;
@@ -16,6 +16,9 @@ con.connect((err) => {
 var getResultSet = (sql, callback) => {
     return new Promise(function (resolve, reject) {
         con.query(sql, (err, result, fields) => {
+            console.log('query = ' + sql);
+            console.log('query Result = ' + JSON.stringify(result));
+            console.log('query err = ' + JSON.stringify(err));
             (commonUtil.isDefined(err)) ? reject(err) : resolve(result);
         });
     });

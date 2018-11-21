@@ -66,9 +66,25 @@ var updatePhoneme = (id, name, orderNo, callback) => {
     });
 };
 
+var searchPhonemes = (key) => {
+    return new Promise(function (resolve, reject) {
+        var sql = `SELECT * FROM phonemes where phonemes.name LIKE '%${key}%' ORDER BY Length(phonemes.name)`;
+        dbConfig.getResultSet(sql)
+            .then((result) => {
+                var extractedResults = phonemeModel.extractPhoneme(result);
+                console.log('extractedResults = ' + JSON.stringify(extractedResults));
+                resolve(extractedResults);
+            })
+            .catch((error) => {
+                reject(error);
+            });
+    });
+}
+
 module.exports = {
-    getPhonemes: getPhonemes,
-    addPhoneme: addPhoneme,
-    deletePhoneme: deletePhoneme,
-    updatePhoneme: updatePhoneme
+    getPhonemes,
+    addPhoneme,
+    deletePhoneme,
+    updatePhoneme,
+    searchPhonemes
 };
