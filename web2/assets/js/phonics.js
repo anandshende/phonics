@@ -113,6 +113,12 @@ var Render = {
             // Append List Element
             wordListElement.append(wordDivElement);
         });
+    },
+
+    emptySearchResult: function () {
+        var divContainer = document.createElement('div');
+        divContainer.innerText = 'No Results Found';
+        document.getElementById('wordList').appendChild(divContainer);
     }
 };
 
@@ -236,6 +242,10 @@ var SearchView = {
 
         PhonicsService.searchWordsBasedKeyAndLength(searchKey, searchLength)
             .then((response) => {
+                if (response.phonics && response.phonics.length == 0) {
+                    Render.emptySearchResult();
+                    return;
+                }
                 var wordList = response.phonics.map((wordJSON) => new WordModel(wordJSON));
                 Render.words(wordList, SearchView.onWordElementClick);
             }).catch((errorResponse) => {
