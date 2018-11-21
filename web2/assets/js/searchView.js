@@ -286,7 +286,7 @@ var ReqProcessor = {
 var SearchView = {
     init: function () {
         var searchKey = document.getElementById('searchKey').value;
-        var searchLength = document.getElementById('searchLength').value;
+        var searchLength = document.getElementById('searchLength').value || 0;
 
         PhonicsService.searchWordsBasedKeyAndLength(searchKey, searchLength)
             .then((response) => {

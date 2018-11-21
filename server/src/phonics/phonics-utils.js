@@ -3,14 +3,11 @@ var phonicsModel = require('./phonics-model')
 
 var getWordsWithLengthConstraints = (number) => {
     return new Promise(function (resolve, reject) {
+        var sql = "";
         if (number > 3) {
-            sql = `select phonemes.id, phonemes.name from phonemes where LENGTH(phonemes.name) >= ${number}`
-            sql += ` UNION `;
-            sql += `select words.id, words.name from words where LENGTH(words.name) >= ${number};`;
+            sql = `select * from words where LENGTH(words.name) >= ${number};`;
         } else {
-            var sql = `select phonemes.id, phonemes.name from phonemes where LENGTH(phonemes.name) = ${number}`;
-            sql += ` UNION `;
-            sql += `select words.id, words.name from words where LENGTH(words.name) = ${number};`;
+            sql = `select * from words where LENGTH(words.name) = ${number};`;
         }
 
         dbConfig.getResultSet(sql)
@@ -26,17 +23,16 @@ var getWordsWithLengthConstraints = (number) => {
 
 var searchWordsWithKeyAndLength = (key, length) => {
     return new Promise(function (resolve, reject) {
-        if (length > 3) {
-            sql = `select phonemes.id, phonemes.name from phonemes where LENGTH(phonemes.name) >= ${length}`;
-            sql += ` AND phonemes.name LIKE '%${key}%'`;
-            sql += ` UNION `;
-            sql += `select words.id, words.name from words where LENGTH(words.name) >= ${length}`;
+        var sql = "";
+        if (length == 0) {
+            sql = `select * from words`;
+            sql += ` where words.name LIKE '%${key}%'`;
+            sql += ` ORDER by Length(words.name);`;
+        } else if (length > 3) {
+            sql = `select * from words where LENGTH(words.name) >= ${length} ORDER by Length(words.name)`;
             sql += ` AND words.name LIKE '%${key}%';`;
         } else {
-            var sql = `select phonemes.id, phonemes.name from phonemes where LENGTH(phonemes.name) = ${length}`;
-            sql += ` AND phonemes.name LIKE '%${key}%'`;
-            sql += ` UNION `;
-            sql += `select words.id, words.name from words where LENGTH(words.name) = ${length}`;
+            sql = `select * from words where LENGTH(words.name) = ${length}`;
             sql += ` AND words.name LIKE '%${key}%';`;
         }
 
