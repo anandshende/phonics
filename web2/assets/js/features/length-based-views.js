@@ -17,8 +17,6 @@ var LengthBasedViews = {
     }
 };
 
-document.onreadystatechange = function () {
-    if (document.readyState === "complete") {
-        LengthBasedViews.init();
-    }
-};
+window.addEventListener('domReadyCustomEvent', function () {
+    LengthBasedViews.init();
+});

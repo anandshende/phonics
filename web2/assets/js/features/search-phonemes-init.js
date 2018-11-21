@@ -1,18 +1,23 @@
-var Phonics = {
+var SearchPhonemes = {
     init: function () {
-        var _self = this;
-        PhonemeService.getPhonemes()
-            .then(function (response) {
+        var searchKey = document.getElementById('searchKey').value;
+
+        PhonemeService.searchPhonemes(searchKey)
+            .then((response) => {
+                if (response.phoneme && response.phoneme.length == 0) {
+                    Render.emptySearchResult();
+                    return;
+                }
                 var phonemeList = response.phoneme.map((phonemeJSON) => new PhonemeModel(phonemeJSON));
-                Render.phonemes(phonemeList, _self.onListElementClick);
+                Render.phonemes(phonemeList, SearchPhonemes.onPhonemeElementClick);
                 document.getElementById(phonemeList[0].phonemeId).click();
-            })
-            .catch(function (errorResponse) {
-                console.log('error => ' + JSON.stringify(errorResponse));
+
+            }).catch((errorResponse) => {
+                console.log('errorResponse = ' + JSON.stringify(errorResponse));
             });
     },
 
-    onListElementClick: function () {
+    onPhonemeElementClick: function () {
         var phonemeModel = JSON.parse(this.dataset.phonemeModel);
 
         // Set Selected Class To Current Element
@@ -23,7 +28,7 @@ var Phonics = {
         WordsService.getWords(phonemeModel.phonemeId)
             .then(function (response) {
                 var wordList = response.words.map((wordJSON) => new WordModel(wordJSON));
-                Render.words(wordList, Phonics.onWordElementClick);
+                Render.words(wordList, SearchPhonemes.onWordElementClick);
             })
             .catch(function (errorResponse) {
                 console.log('error => ' + JSON.stringify(errorResponse));
@@ -37,9 +42,3 @@ var Phonics = {
         PopUp.open(wordModel);
     }
 };
-
-
-
-window.addEventListener('domReadyCustomEvent', function () {
-    Phonics.init();
-});

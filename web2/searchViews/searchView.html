@@ -6,11 +6,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="./assets/css/vendor/simple-scrollbar.css">
-    <link href="assets/css/searchView.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/vendor/simple-scrollbar.css">
+    <link href="/assets/css/searchView.css" rel="stylesheet">
 
 
-    <script src="./appConfig.js"></script>
+    <script src="/appConfig.js"></script>
 </head>
 
 <body>
@@ -18,7 +18,7 @@
         <div class="top-bar">
             <div class="top-bar-vertical-center">
                 <div class="menu-icon-container">
-                    <object class="menu-icon" data="./assets/icons/menu.svg" type="image/svg+xml"></object>
+                    <object class="menu-icon" data="/assets/icons/menu.svg" type="image/svg+xml"></object>
                 </div>
                 <div class="heading-container">
                     <span class="heading">Search By Keywords</span>
@@ -39,7 +39,7 @@
                         </div>
                         <div class="buttons-container">
                             <div class="buttons-inner-container">
-                                <button onclick="SearchView.init()" class="button">Submit</button>
+                                <button onclick="SearchView.init()" class="button">Search</button>
                             </div>
                         </div>
                     </div>
@@ -56,27 +56,9 @@
     </div>
     <div class="menu-overlay" id="menu">
         <div class="menu-icon-container menu-close-icon-container">
-            <object class="menu-icon" data="../assets/icons/close.svg" type="image/svg+xml"></object>
+            <object class="menu-icon" data="/assets/icons/close.svg" type="image/svg+xml"></object>
         </div>
-        <div class="menu-container">
-            <ul class="menu-list">
-                <li class="menu-element">
-                    <a href="./phonics.html">Phonemes List</a>
-                </li>
-                <li class="menu-element">
-                    <a href="./searchView.html">Search By Keyword</a>
-                </li>
-                <li class="menu-element">
-                    <a href="./lengthBasedViews/twoLetters.html">Two Letter Words</a>
-                </li>
-                <li class="menu-element">
-                    <a href="./lengthBasedViews/threeLetters.html">Three Letter Words</a>
-                </li>
-                <li class="menu-element">
-                    <a href="./lengthBasedViews/moreLetters.html">Four Or More Letter Words</a>
-                </li>
-            </ul>
-        </div>
+        <div class="menu-container" w3-include-html="/menu-template.html"></div>
     </div>
 
     <!-- Pop Core Logic -->
@@ -92,7 +74,7 @@
         </div>
     </div>
 
-    <script src="./assets/js/searchView.js"></script>
+    <script src="/assets/js/searchView.js"></script>
 </body>
 
 </html>
