@@ -1,8 +1,11 @@
-var WordsModel = function() {
+var CommonUtil = require('../common-util');
+
+var WordsModel = function () {
     this.id;
     this.timestamp;
     this.orderNo;
     this.name;
+    this.imageUrl;
     this.phonemeId;
 }
 
@@ -15,6 +18,9 @@ var extractWord = (result) => {
         wordsModel.orderNo = element.order_no;
         wordsModel.timestamp = element.timestamp;
         wordsModel.phonemeId = element.phoneme_id;
+
+        wordsModel.imageUrl =  CommonUtil.getImage(wordsModel.name);
+
         extractedData.push(wordsModel);
     });
     return extractedData;

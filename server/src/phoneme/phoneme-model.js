@@ -1,4 +1,4 @@
-var PhonemeModel = function() {
+var PhonemeModel = function () {
     this.id;
     this.timestamp;
     this.orderNo;
