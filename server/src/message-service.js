@@ -5,6 +5,7 @@ module.exports = {
     custom_0001: 'Parameter {0} missing',
     custom_0002: 'Incorrect URL - {0} missing',
     custom_0003: 'Path Parameters missing',
+    custom_0004: 'File Not Found',
 
 
     getMessage: function (errorCode, values) {

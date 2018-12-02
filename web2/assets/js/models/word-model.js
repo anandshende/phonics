@@ -3,6 +3,7 @@ var WordModel = function (wordObj) {
     this.wordName = wordObj.name;
     this.wordOrderNo = wordObj.orderNo;
     this.wordPhonemeId = wordObj.phonemeId;
+    this.imageUrl = wordObj.imageUrl;
 };
 
 WordModel.prototype.toJson = function (wordObj) {

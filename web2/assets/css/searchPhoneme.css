@@ -288,11 +288,17 @@ body {
   white-space: nowrap;
   margin: 0 auto;
   line-height: 1;
+  pointer-events: none;
 }
 
 .pop-up-icon-container {
   position: absolute;
   right: 20px;
+}
+
+.pop-up-image-container > img {
+  width: 100%;
+  height: 100%;
 }
 
 .left-panel {
@@ -325,4 +331,4 @@ body {
   flex-direction: column;
 }
 
-/*# sourceMappingURL=searchPhonemes.css.map */
+/*# sourceMappingURL=searchPhoneme.css.map */
