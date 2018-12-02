@@ -140,7 +140,16 @@ var PopUp = {
             document.getElementById('imageContainer').style.display = 'block';
             document.getElementById('fitTextContainer').style.display = "none";
             _self.isImage = true;
+            PopUp.sayWord();
         }
+    },
+
+    sayWord: function() {
+        var wordModel = JSON.parse(PopUp.popUpContent.dataset.wordModel);
+        var word = wordModel.wordName;
+        var voiceProperties = new SpeechSynthesisUtterance(word);
+        var synth = window.speechSynthesis;
+        synth.speak(voiceProperties);
     }
 };
 
