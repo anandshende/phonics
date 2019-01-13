@@ -30,7 +30,8 @@
                 <div>
                     <div class="form-container">
                         <div class="text-container-box email-box">
-                            <input autocomplete="off" id="searchKey" required class="textbox email-textbox" type="text">
+                            <input autocomplete="off" id="searchKey" onkeyup="SearchPhonemes.onKeyUp(event)" required
+                                class="textbox email-textbox" type="text">
                             <label class="label" for="searchKey">Searching Key</label>
                         </div>
                         <div class="buttons-container">

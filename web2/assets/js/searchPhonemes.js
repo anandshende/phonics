@@ -482,6 +482,12 @@ var SearchPhonemes = {
 
         // Open Pop Up
         PopUp.open(wordModel);
+    },
+
+    onKeyUp: function(event) {
+        if(event.keyCode == 13) {
+            this.init();
+        }
     }
 };
 
