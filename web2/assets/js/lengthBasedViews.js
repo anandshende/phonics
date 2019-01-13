@@ -42,11 +42,12 @@ var PopUp = {
         p.innerHTML = this.getInnerHTML(wordModel.wordName);
         this.popUpContent.appendChild(p);
 
-        if (wordModel.wordName.length > 3) {
+        /* if (wordModel.wordName.length > 3) {
             this.popUpContent.style.width = "1000px";
         } else {
             this.popUpContent.style.width = "500px";
-        }
+        } */ 
+        this.popUpContent.style.width = "1300px";
         fitty('.pop-up-text-container', {
             multiLine: false
         });
