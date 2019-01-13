@@ -15,7 +15,7 @@
 } 
 
 .pop-up-content {
-  height: 500px;
+  // height: 500px;
   width: 500px;
   line-height: 500px;
   background: black;
@@ -23,6 +23,7 @@
   transition: visibility 0.3s linear, opacity 0.3s linear;
   visibility: hidden;
   opacity: 0;
+  text-align: center;
 }
 
 .pop-up-content-opaque {
@@ -33,7 +34,7 @@
 .pop-up-text-container {
   display: inline-block;
   white-space: nowrap;
-  margin: 0 auto;
+  // margin: 0 auto;
   line-height: 1;
   pointer-events: none;
 }
