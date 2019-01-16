@@ -1,0 +1,225 @@
+body {
+    background-image: url('../images/background.jpg');
+    font-family: cursive;
+}
+
+.mainContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.topBar {
+    position: absolute;
+    top: 0;
+    height: 50px;
+    width: 100%;
+    border-bottom: 1px solid cyan;
+}
+
+.panels {
+    position: absolute;
+    top: 50px;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+}
+
+.leftPanel {
+    width: 20%;
+    height: 100%;
+    float: left;
+}
+
+.middlePanel {
+    width: 20%;
+    height: 100%;
+    float: left;
+    border-left: 1px solid cyan;
+}
+
+.rightPanel {
+    width: 59.7%;
+    height: 100%;
+    float: left;
+    display: table;
+    text-align: center;
+    border-left: 1px solid cyan;
+}
+
+.clr {
+    clear: both;
+}
+
+.phonemesContainer {
+    height: 100%;
+    width: 90%;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.wordsContainer {
+    height: 100%;
+    width: 90%;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.editContainer {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.titleBar {
+    width: 60%;
+    margin: auto;
+    background: #888a88;
+    font-weight: bold;
+    color: lightgray;
+    font-size: 22px;
+    padding: 10px 0;
+}
+
+.editBody {
+    width: 60%;
+    padding: 50px 0;
+    margin: auto;
+    background: #5c5d5b;
+}
+
+.tabContainer {
+    color: cyan;
+    display: table;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+
+.tabs {
+    display: inline-block;
+    margin: auto;
+}
+
+.tab {
+    float: left;
+    cursor: pointer;
+}
+
+.innerTabContainer {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.lastTab {
+    margin-left: 50px;
+}
+
+.phonemeList {
+    padding: 0px;
+    margin: 0px;
+    list-style-type: none;
+}
+
+.phonemeElement {
+    padding: 10px;
+    background: aquamarine;
+    text-align: center;
+    margin-left: 10px;
+    margin-right: 30px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.phonemeElement:hover {
+    background: #4f987f;
+}
+
+.phonemeElementSelected {
+    background: #4f987f;
+}
+
+.wordElement {
+    padding: 10px;
+    margin-left: 10px;
+    margin-right: 30px;
+    margin-bottom: 10px;
+    background: aquamarine;
+    text-align: center;
+    cursor: pointer;
+}
+
+.innerWordElement {
+    vertical-align: middle;
+}
+
+.wordElementSelected {
+    background: #4f987f;
+}
+
+.editForm {
+    display: table;
+    width: 100%;
+    border-spacing: 15px;
+}
+
+.formRow {
+    display: table-row;
+}
+
+.formCell {
+    display: table-cell;
+}
+
+.disable-input {
+    background: #868686;
+    outline: #868686;
+    border: #868686;
+}
+
+input {
+    outline: white;
+    border: white;
+    background: white;
+    padding: 4px;
+}
+
+.form-button {
+    float: left;
+    margin-left: 15px;
+}
+
+.form-button-container {
+    text-align: center;
+    display: inline-block;
+    margin-top: 30px;
+}
+
+.addPhonemeContainer {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid cyan;
+}
+
+.addPhoneme {
+    padding: 10px;
+    background: aquamarine;
+    text-align: center;
+    cursor: pointer;
+}
+
+select {
+    width: 80%;
+    padding: 3px;
+    outline: none;
+    background: white;
+    border: white;
+}
+
+.select-disabled {
+    background: #868686;
+    border: #868686;
+}

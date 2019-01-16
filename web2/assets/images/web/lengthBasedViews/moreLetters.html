@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../css/phonics.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/twoLetters.css">
+    <link rel="stylesheet" href="../css/vendor/simple-scrollbar.css">
+    <script src="../js/vendor/simple-scrollbar.js"></script>
+    <script src="../appConfig.js"></script>
+</head>
+
+<body>
+    <div class="mainContainer">
+        <div class="topBar">
+            <div class="tabContainer">
+                <!-- <div class="innerTabContainer">
+                    <div class="tabs" id="tabs">
+                        <div id='editTab' class="tab">
+                            EDIT
+                        </div>
+                        <div id='logOut' class="tab lastTab">
+                            LOG OUT
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+        <div class="panels">
+            <!-- <div class="leftPanel">
+                <div ss-container class="phonemesContainer">
+                    <ul id="phonemeList" class="phonemeList">
+                    </ul>
+                </div>
+            </div> -->
+            <div class='rightPanel'>
+                <div ss-container class="wordList">
+                    <div id="wordList">
+                        <!-- <div class="wordElement">
+                            <div class="innerWordElement">
+                                <span>ABCDEFGHIJ</span>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="clr"></div>
+        </div>
+    </div>
+    <script src="../js/common/constants.js"></script>
+    <script>
+        const PhonicsIds = DisplayPhonicsIds;
+        const WORDS_LENGTH = 4;
+    </script>
+    <script src="../js/common/events.js"></script>
+    <script src="../js/common/phonics-util.js"></script>
+    <script src="../js/model/phoneme-model.js"></script>
+    <script src="../js/common/request-processing.js"></script>
+    <!-- <script src="../js/service/phoneme-service.js"></script> -->
+    <script src="../js/service/phonics-service.js"></script>
+    <script src="../js/model/word-model.js"></script>
+    <!-- <script src="../js/service/words-service.js"></script> -->
+    <script src="../js/model/phonics-model.js"></script>
+    <script src="../js/lengthBasedPhonics.js"></script>
+</body>
+
+</html>
