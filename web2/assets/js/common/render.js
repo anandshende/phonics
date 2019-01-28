@@ -24,8 +24,9 @@ var Render = {
 
     },
 
-    words: function (wordList, eventHandler) {
+    words: function (wordList, eventHandler, phonemeModel) {
         var wordListElement = document.getElementById('wordList');
+        wordListElement.dataset.phonemeModel = JSON.stringify(phonemeModel);
 
         // Clear List
         wordListElement.innerHTML = "";
@@ -37,7 +38,7 @@ var Render = {
             wordDivElement.id = wordModel.wordId;
 
             // Add Element Details
-            wordDivElement.innerText = wordModel.wordName;
+            wordDivElement.innerHTML = CommonUtil.getWordHTML(wordModel.wordName, phonemeModel.phonemeName);
             wordDivElement.dataset.wordModel = JSON.stringify(wordModel);
 
             // Add Event Listeners

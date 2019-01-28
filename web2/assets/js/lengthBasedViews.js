@@ -8,7 +8,37 @@ var CommonUtil = {
         for (var i of phonemeList) {
             i.classList.remove('phoneme-element-selected');
         }
-    }
+    },
+
+    getColorCodes: function () {
+        var random = Math.random();
+        var colorCodes = AppConfig.colorCodes;
+        var len = colorCodes.length;
+
+        var floor = Math.floor(random * len);
+        return colorCodes[floor];
+    },
+
+    getWordHTML: function (text, phonemeName) {
+        var array = text.split("");
+
+        var innerHTML = "";
+        array.map(function (letter, index) {
+            var anchorText = letter;
+            var highlightClass = '';
+            if (letter == phonemeName[0]) {
+                var subString = text.substr(index, phonemeName.length);
+                if (subString === phonemeName) {
+                    array.splice(index, phonemeName.length, subString);
+                    anchorText = subString;
+                    highlightClass = 'class = "highlight-text"';
+                }
+            }
+            var colorCodes = CommonUtil.getColorCodes();
+            innerHTML += `<a style="color: ${colorCodes};" ${highlightClass}>${anchorText}</a>`;
+        });
+        return innerHTML;
+    },
 }
 
 
@@ -46,7 +76,7 @@ var PopUp = {
             this.popUpContent.style.width = "1000px";
         } else {
             this.popUpContent.style.width = "500px";
-        } */ 
+        } */
         this.popUpContent.style.width = "1300px";
         fitty('.pop-up-text-container', {
             multiLine: false
@@ -60,21 +90,10 @@ var PopUp = {
         this.popUpContent.onclick = PopUp.toggleImage;
     },
 
-    getInnerHTML: function (text, imgName) {
-        var colorCodes = AppConfig.colorCodes;
-        var array = text.split("");
-        var len = colorCodes.length;
-
-        var innerHTML = "";
-        var prevFloor = -1;
-        array.map(function (arrayStr) {
-            var random = Math.random();
-            var floor = Math.floor(random * len);
-            if (prevFloor == floor) {
-                floor = (floor + 1) % 15;
-            }
-            innerHTML += `<a style="color: ${colorCodes[floor]};">${arrayStr}</a>`;
-        });
+    getInnerHTML: function (text) {
+        var phonemeModel = JSON.parse(document.getElementById('wordList').dataset.phonemeModel);
+        var phonemeName = phonemeModel.phonemeName;
+        var innerHTML = CommonUtil.getWordHTML(text, phonemeName);
         return innerHTML;
     },
 
@@ -145,7 +164,7 @@ var PopUp = {
         }
     },
 
-    sayWord: function() {
+    sayWord: function () {
         var wordModel = JSON.parse(PopUp.popUpContent.dataset.wordModel);
         var word = wordModel.wordName;
         var voiceProperties = new SpeechSynthesisUtterance(word);
@@ -183,8 +202,9 @@ var Render = {
 
     },
 
-    words: function (wordList, eventHandler) {
+    words: function (wordList, eventHandler, phonemeModel) {
         var wordListElement = document.getElementById('wordList');
+        wordListElement.dataset.phonemeModel = JSON.stringify(phonemeModel);
 
         // Clear List
         wordListElement.innerHTML = "";
@@ -196,7 +216,7 @@ var Render = {
             wordDivElement.id = wordModel.wordId;
 
             // Add Element Details
-            wordDivElement.innerText = wordModel.wordName;
+            wordDivElement.innerHTML = CommonUtil.getWordHTML(wordModel.wordName, phonemeModel.phonemeName);
             wordDivElement.dataset.wordModel = JSON.stringify(wordModel);
 
             // Add Event Listeners

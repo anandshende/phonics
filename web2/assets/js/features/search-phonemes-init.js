@@ -28,7 +28,7 @@ var SearchPhonemes = {
         WordsService.getWords(phonemeModel.phonemeId)
             .then(function (response) {
                 var wordList = response.words.map((wordJSON) => new WordModel(wordJSON));
-                Render.words(wordList, SearchPhonemes.onWordElementClick);
+                Render.words(wordList, SearchPhonemes.onWordElementClick, phonemeModel);
             })
             .catch(function (errorResponse) {
                 console.log('error => ' + JSON.stringify(errorResponse));

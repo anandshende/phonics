@@ -136,6 +136,14 @@ body {
   padding: 8px 0;
 }
 
+.word-element > a {
+  color: #ffffff !important;
+}
+
+.word-element > .highlight-text {
+  color: #fd8214 !important;
+}
+
 .form-container {
   padding-top: 30px;
 }
@@ -300,6 +308,10 @@ body {
 .pop-up-image-container > img {
   width: 100%;
   height: 100%;
+}
+
+.highlight-text {
+  text-decoration: underline;
 }
 
 .left-panel {

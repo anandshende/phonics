@@ -29,3 +29,11 @@
     border: 2px solid $buttonHoverBorder;
     padding: 8px 0;
 }
+
+.word-element > a {
+    color: #ffffff !important;
+}
+
+.word-element > .highlight-text {
+    color: #fd8214 !important;
+}

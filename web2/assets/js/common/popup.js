@@ -30,7 +30,7 @@ var PopUp = {
             this.popUpContent.style.width = "1000px";
         } else {
             this.popUpContent.style.width = "500px";
-        } */ 
+        } */
         this.popUpContent.style.width = "1300px";
         fitty('.pop-up-text-container', {
             multiLine: false
@@ -44,21 +44,10 @@ var PopUp = {
         this.popUpContent.onclick = PopUp.toggleImage;
     },
 
-    getInnerHTML: function (text, imgName) {
-        var colorCodes = AppConfig.colorCodes;
-        var array = text.split("");
-        var len = colorCodes.length;
-
-        var innerHTML = "";
-        var prevFloor = -1;
-        array.map(function (arrayStr) {
-            var random = Math.random();
-            var floor = Math.floor(random * len);
-            if (prevFloor == floor) {
-                floor = (floor + 1) % 15;
-            }
-            innerHTML += `<a style="color: ${colorCodes[floor]};">${arrayStr}</a>`;
-        });
+    getInnerHTML: function (text) {
+        var phonemeModel = JSON.parse(document.getElementById('wordList').dataset.phonemeModel);
+        var phonemeName = phonemeModel.phonemeName;
+        var innerHTML = CommonUtil.getWordHTML(text, phonemeName);
         return innerHTML;
     },
 
@@ -129,7 +118,7 @@ var PopUp = {
         }
     },
 
-    sayWord: function() {
+    sayWord: function () {
         var wordModel = JSON.parse(PopUp.popUpContent.dataset.wordModel);
         var word = wordModel.wordName;
         var voiceProperties = new SpeechSynthesisUtterance(word);
