@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Level 1</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="/assets/css/vendor/simple-scrollbar.css">
+    <link href="/assets/css/searchPhoneme.css" rel="stylesheet">
+
+
+    <script src="/appConfig.js"></script>
+</head>
+
+<body>
+    <div class="main-container">
+        <div class="top-bar">
+            <div class="top-bar-vertical-center">
+                <div class="menu-icon-container">
+                    <object class="menu-icon" data="/assets/icons/menu.svg" type="image/svg+xml"></object>
+                </div>
+                <div class="heading-container">
+                    <span class="heading">Level 1</span>
+                </div>
+            </div>
+        </div>
+        <div class="panels">
+            <div class="left-panel">
+                <div>
+                    <div class="form-container">
+                        <div class="text-container-box email-box">
+                            <input autocomplete="off" id="searchKey" onkeyup="SearchPhonemes.onKeyUp(event)" required
+                                class="textbox email-textbox" type="text">
+                            <label class="label" for="searchKey">Searching Key</label>
+                        </div>
+                        <div class="buttons-container">
+                            <div class="buttons-inner-container">
+                                <button onclick="SearchPhonemes.init()" class="button">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div ss-container class="phonemes-container">
+                    <ul id="phonemeList" class="phoneme-list">
+                        <!-- <li class="phoneme-element phoneme-element-selected">ONE</li> -->
+                    </ul>
+                </div>
+            </div>
+            <div class='right-panel'>
+                <div class="word-list-container">
+                    <div class='word-list' id="wordList">
+                        <!-- <div class="word-element">Ticket</div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="menu-overlay" id="menu">
+        <div class="menu-icon-container menu-close-icon-container">
+            <object class="menu-icon" data="/assets/icons/close.svg" type="image/svg+xml"></object>
+        </div>
+        <div class="menu-container" w3-include-html="/menu-template.html"></div>
+    </div>
+
+    <!-- Pop Core Logic -->
+    <div class="pop-up-background" id="popUp">
+        <div class="menu-icon-container menu-close-icon-container pop-up-icon-container">
+            <object class="menu-icon" data="../assets/icons/close.svg" type="image/svg+xml"></object>
+        </div>
+        <div class="pop-up-container">
+            <div class="pop-up-content" id="popUpContent">
+                <!-- <p id="fitTextContainer" class="pop-up-text-container">
+                </p> -->
+            </div>
+        </div>
+    </div>
+
+    <script src="/assets/js/searchPhonemes.js"></script>
+</body>
+
+</html>
