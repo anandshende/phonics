@@ -257,6 +257,7 @@ var Render = {
     emptySearchResult: function () {
         var divContainer = document.createElement('div');
         divContainer.innerText = 'No Results Found';
+        document.getElementById('wordList').innerHTML = '';
         document.getElementById('wordList').appendChild(divContainer);
     }
 };
