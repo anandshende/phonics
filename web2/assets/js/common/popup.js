@@ -40,8 +40,9 @@ var PopUp = {
 
         //Image Display
         this.appendImage(wordModel.imageUrl);
+        this.appendLeftRightIcons();
 
-        this.popUpContent.onclick = PopUp.toggleImage;
+        // this.popUpContent.onclick = PopUp.toggleImage;0
     },
 
     getInnerHTML: function (text) {
@@ -68,6 +69,32 @@ var PopUp = {
         }
 
         this.popUpContent.appendChild(div);
+
+    },
+
+    appendLeftRightIcons: function () {
+        var rightIconContainer = document.createElement('div');
+        rightIconContainer.classList.add('menu-icon-container', 'menu-close-icon-container', 'pop-up-icon-container');
+        rightIconContainer.classList.add('arrow', 'right-arrow');
+
+        var rightArrow = document.createElement('object');
+        rightArrow.classList.add('menu-icon');
+        rightArrow.data = '../assets/icons/arrow-right-icon.svg';
+        rightArrow.type = 'image/svg+xml';
+
+        var leftIconContainer = document.createElement('div');
+        leftIconContainer.classList.add('menu-icon-container', 'menu-close-icon-container', 'pop-up-icon-container');
+        leftIconContainer.classList.add('arrow', 'left-arrow');
+
+        var leftArrow = document.createElement('object');
+        leftArrow.classList.add('menu-icon');
+        leftArrow.data = '../assets/icons/arrow-left-icon.svg';
+        leftArrow.type = 'image/svg+xml';
+
+        rightIconContainer.appendChild(rightArrow);
+        this.popUpContent.appendChild(rightIconContainer);
+        leftIconContainer.appendChild(leftArrow);
+        this.popUpContent.appendChild(leftIconContainer);
     },
 
     getImageStyles: function (width, height) {

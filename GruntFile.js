@@ -18,6 +18,10 @@ module.exports = function (grunt) {
                 src: searchPhonemesJSFiles,
                 dest: 'web2/assets/js/searchPhonemes.js'
             },
+            searchPhonemesLevelBased: {
+                src: searchPhonemesJSFiles,
+                dest: 'web2/assets/js/searchPhonemesLevelBased.js'
+            },
             options: {
                 process: function (src, filepath) {
                     return '\n\n' + '// ----- ----- ' + filepath + ' ----- ----- \n\n' + src;
@@ -70,7 +74,7 @@ var searchViewJSFiles = [
 
 var searchPhonemesJSFiles = [
     ...CommonJSFiles,
-    'web2/assets/js/features/search-phonemes-init.js',
+    'web2/assets/js/features/search-phonemes-level-based.js',
     'web2/assets/js/models/*.js',
     'web2/assets/js/services/phoneme-service.js',
     'web2/assets/js/services/words-service.js'

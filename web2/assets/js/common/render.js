@@ -60,6 +60,10 @@ var svgCallback = function (event, iconType) {
     var menu = document.getElementById('menu');
     if (iconType == 'close' && document.getElementById('popUpContent').dataset.wordModel) {
         PopUp.close();
+    } else if (iconType == 'rightArrow') {
+        PopUp.toggleImage();
+    } else if (iconType == 'leftArrow') {
+        PopUp.toggleImage();
     } else {
         menu.style.display = menu.style.display == 'block' ? 'none' : 'block';
     }

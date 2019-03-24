@@ -314,6 +314,18 @@ body {
   text-decoration: underline;
 }
 
+.pop-up-icon-container.arrow {
+  position: fixed;
+  top: 50%;
+  transform: translate(0, -50%);
+  margin-top: 0;
+  line-height: 0;
+}
+
+.left-arrow {
+  left: 20px;
+}
+
 .left-panel {
   width: 300px;
 }
