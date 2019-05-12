@@ -2,6 +2,7 @@ var PopUp = {
     popUpContainer: document.getElementById('popUp'),
     popUpContent: document.getElementById('popUpContent'),
     isImage: false,
+    mobile: false,
 
     open: function (wordModel) {
         this.popUpContainer.style.visibility = 'visible';
@@ -20,27 +21,31 @@ var PopUp = {
         this.popUpContent.dataset.wordModel = JSON.stringify(wordModel);
 
         // Text Display
-        var p = document.createElement('p');
-        p.classList.add('pop-up-text-container');
-        p.id = 'fitTextContainer';
-        p.innerHTML = this.getInnerHTML(wordModel.wordName);
-        this.popUpContent.appendChild(p);
+        if (!this.mobile) {
+            var p = document.createElement('p');
+            p.classList.add('pop-up-text-container');
+            p.id = 'fitTextContainer';
+            p.innerHTML = this.getInnerHTML(wordModel.wordName);
+            this.popUpContent.appendChild(p);
 
-        /* if (wordModel.wordName.length > 3) {
-            this.popUpContent.style.width = "1000px";
+            /* if (wordModel.wordName.length > 3) {
+                this.popUpContent.style.width = "1000px";
+            } else {
+                this.popUpContent.style.width = "500px";
+            } */
+            this.popUpContent.style.width = "1300px";
+            fitty('.pop-up-text-container', {
+                multiLine: false
+            });
+            this.appendLeftRightIcons();
         } else {
-            this.popUpContent.style.width = "500px";
-        } */
-        this.popUpContent.style.width = "1300px";
-        fitty('.pop-up-text-container', {
-            multiLine: false
-        });
+            this.isImage = true;
+        }
 
         if (!wordModel.imageUrl) return;
 
         //Image Display
         this.appendImage(wordModel.imageUrl);
-        this.appendLeftRightIcons();
 
         // this.popUpContent.onclick = PopUp.toggleImage;0
     },
@@ -64,8 +69,11 @@ var PopUp = {
         image.onload = function () {
             var styles = _self.getImageStyles(this.width, this.height);
             div.style.cssText = styles;
-            div.style.display = 'none';
+            if (!PopUp.mobile) {
+                div.style.display = 'none';
+            }
             div.appendChild(image);
+            PopUp.sayWord();
         }
 
         this.popUpContent.appendChild(div);
@@ -101,6 +109,9 @@ var PopUp = {
         var styles = "";
         var containerWidth = PopUp.popUpContent.offsetWidth;
         var containerHeight = PopUp.popUpContent.offsetHeight;
+        if (this.mobile) {
+            containerHeight = PopUp.popUpContent.offsetWidth;
+        }
 
         var ratio = width / height;
         if (ratio > 1) {
