@@ -13,7 +13,7 @@
 
 .left-panel {
     width: 300px;
-} 
+}
 
 .form-container {
     padding: 0 10px;
@@ -39,4 +39,15 @@
     align-items: center;
     max-height: 100%;
     flex-direction: column;
+}
+
+@media only screen and (max-width: 600px) {
+    .left-panel {
+        width: 30%;
+    }
+
+    .word-list {
+        flex-wrap: unset;
+        overflow-y: auto;
+    }
 }
