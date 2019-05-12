@@ -5,6 +5,7 @@ var PopUp = {
     mobile: false,
 
     open: function (wordModel) {
+        this.mobile = CommonUtil.mobilecheck();
         this.popUpContainer.style.visibility = 'visible';
         this.popUpContent.classList.add('pop-up-content-opaque');
         this.render(wordModel);
