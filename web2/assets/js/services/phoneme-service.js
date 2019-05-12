@@ -15,7 +15,7 @@ var PhonemeService = {
     getV2Phonemes: function () {
         var level = LEVEL;
         var baseUrl = AppConfig.baseUrl;
-        var url = `${baseUrl}/${level}/phoneme/`;
+        var url = `${baseUrl}/v2/${level}/phoneme/`;
         return ReqProcessor.GET(url);
     },
     
