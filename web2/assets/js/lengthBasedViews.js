@@ -92,12 +92,23 @@ var PopUp = {
             fitty('.pop-up-text-container', {
                 multiLine: false
             });
+            if (!wordModel.imageUrl) {
+                this.loader.style.display = 'none';
+                return;
+            }
             this.appendLeftRightIcons();
         } else {
             this.isImage = true;
         }
 
-        if (!wordModel.imageUrl) return;
+        if (!wordModel.imageUrl) {
+            this.loader.style.display = 'none';
+            if(this.mobile) {
+                this.sayWord();
+                this.close();
+            }
+            return;
+        }
 
         //Image Display
         this.appendImage(wordModel.imageUrl);
