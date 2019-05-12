@@ -1,10 +1,12 @@
 var PopUp = {
     popUpContainer: document.getElementById('popUp'),
     popUpContent: document.getElementById('popUpContent'),
+    loader: document.getElementById('loader'),
     isImage: false,
     mobile: false,
 
     open: function (wordModel) {
+        this.loader.style.display = 'flex';
         this.mobile = CommonUtil.mobilecheck();
         this.popUpContainer.style.visibility = 'visible';
         this.popUpContent.classList.add('pop-up-content-opaque');
@@ -74,6 +76,7 @@ var PopUp = {
                 div.style.display = 'none';
             }
             div.appendChild(image);
+            PopUp.loader.style.display = 'none';
             PopUp.sayWord();
         }
 
