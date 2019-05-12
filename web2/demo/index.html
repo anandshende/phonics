@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Search Phonemes</title>
+    <title>Level 0</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -17,30 +17,13 @@
     <div class="main-container">
         <div class="top-bar">
             <div class="top-bar-vertical-center">
-                <div class="menu-icon-container">
-                    <object class="menu-icon" data="/assets/icons/menu.svg" type="image/svg+xml"></object>
-                </div>
                 <div class="heading-container">
-                    <span class="heading">Search Phonemes</span>
+                    <span class="heading">Demo Level</span>
                 </div>
             </div>
         </div>
         <div class="panels">
             <div class="left-panel">
-                <div>
-                    <div class="form-container">
-                        <div class="text-container-box email-box">
-                            <input autocomplete="off" id="searchKey" onkeyup="SearchPhonemes.onKeyUp(event)" required
-                                class="textbox email-textbox" type="text">
-                            <label class="label" for="searchKey">Searching Key</label>
-                        </div>
-                        <div class="buttons-container">
-                            <div class="buttons-inner-container">
-                                <button onclick="SearchPhonemes.init()" class="button">Search</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div ss-container class="phonemes-container">
                     <ul id="phonemeList" class="phoneme-list">
                         <!-- <li class="phoneme-element phoneme-element-selected">ONE</li> -->
@@ -76,7 +59,8 @@
         </div>
     </div>
 
-    <script src="/assets/js/searchPhonemes.js"></script>
+    <script src="/assets/js/showPhonemesLevelBased.js"></script>
+    <script>LEVEL = 1;</script>
 </body>
 
 </html>

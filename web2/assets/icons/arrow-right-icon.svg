@@ -1,0 +1,10 @@
+<?xml-stylesheet type="text/css" href="../css/svg.css"?>
+<svg onclick="top.svgCallback(evt, 'rightArrow')"  class="svg-class" width="119.06mm" height="92.779mm" version="1.1" viewBox="0 0 119.06 92.779" xmlns="http://www.w3.org/2000/svg">
+ <g transform="translate(-6.6146 -184.38)">
+  <g fill="#999" fill-rule="evenodd">
+   <rect class="svg-close-icon" x="6.6146" y="224.24" width="119.06" height="13.229" rx="6.6146" ry="6.6146"/>
+   <rect class="svg-close-icon" transform="rotate(-45)" x="-140.63" y="240.81" width="66.146" height="13.229" rx="3.6748" ry="6.6146"/>
+   <rect class="svg-close-icon" transform="rotate(225)" x="-252.71" y="-85.619" width="66.944" height="13.389" rx="3.7191" ry="6.6944"/>
+  </g>
+ </g>
+</svg>

@@ -1,8 +1,6 @@
 var SearchPhonemes = {
     init: function () {
-        var searchKey = document.getElementById('searchKey').value;
-
-        PhonemeService.searchPhonemes(searchKey)
+        PhonemeService.getV2Phonemes()
             .then((response) => {
                 if (response.phoneme && response.phoneme.length == 0) {
                     Render.emptySearchResult();
@@ -25,7 +23,7 @@ var SearchPhonemes = {
         this.classList.add('phoneme-element-selected');
 
         // GetWords 
-        WordsService.getWords(phonemeModel.phonemeId)
+        WordsService.getV2Words(phonemeModel.phonemeId)
             .then(function (response) {
                 var wordList = response.words.map((wordJSON) => new WordModel(wordJSON));
                 Render.words(wordList, SearchPhonemes.onWordElementClick, phonemeModel);
@@ -42,9 +40,8 @@ var SearchPhonemes = {
         PopUp.open(wordModel);
     },
 
-    onKeyUp: function(event) {
-        if(event.keyCode == 13) {
-            this.init();
-        }
-    }
 };
+
+window.addEventListener('domReadyCustomEvent', function () {
+    SearchPhonemes.init();
+});

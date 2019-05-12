@@ -30,7 +30,7 @@ var PopUp = {
             this.popUpContent.style.width = "1000px";
         } else {
             this.popUpContent.style.width = "500px";
-        } */ 
+        } */
         this.popUpContent.style.width = "1300px";
         fitty('.pop-up-text-container', {
             multiLine: false
@@ -40,25 +40,15 @@ var PopUp = {
 
         //Image Display
         this.appendImage(wordModel.imageUrl);
+        this.appendLeftRightIcons();
 
-        this.popUpContent.onclick = PopUp.toggleImage;
+        // this.popUpContent.onclick = PopUp.toggleImage;0
     },
 
-    getInnerHTML: function (text, imgName) {
-        var colorCodes = AppConfig.colorCodes;
-        var array = text.split("");
-        var len = colorCodes.length;
-
-        var innerHTML = "";
-        var prevFloor = -1;
-        array.map(function (arrayStr) {
-            var random = Math.random();
-            var floor = Math.floor(random * len);
-            if (prevFloor == floor) {
-                floor = (floor + 1) % 15;
-            }
-            innerHTML += `<a style="color: ${colorCodes[floor]};">${arrayStr}</a>`;
-        });
+    getInnerHTML: function (text) {
+        var phonemeModel = JSON.parse(document.getElementById('wordList').dataset.phonemeModel);
+        var phonemeName = phonemeModel.phonemeName;
+        var innerHTML = CommonUtil.getWordHTML(text, phonemeName);
         return innerHTML;
     },
 
@@ -79,6 +69,32 @@ var PopUp = {
         }
 
         this.popUpContent.appendChild(div);
+
+    },
+
+    appendLeftRightIcons: function () {
+        var rightIconContainer = document.createElement('div');
+        rightIconContainer.classList.add('menu-icon-container', 'menu-close-icon-container', 'pop-up-icon-container');
+        rightIconContainer.classList.add('arrow', 'right-arrow');
+
+        var rightArrow = document.createElement('object');
+        rightArrow.classList.add('menu-icon');
+        rightArrow.data = '../assets/icons/arrow-right-icon.svg';
+        rightArrow.type = 'image/svg+xml';
+
+        var leftIconContainer = document.createElement('div');
+        leftIconContainer.classList.add('menu-icon-container', 'menu-close-icon-container', 'pop-up-icon-container');
+        leftIconContainer.classList.add('arrow', 'left-arrow');
+
+        var leftArrow = document.createElement('object');
+        leftArrow.classList.add('menu-icon');
+        leftArrow.data = '../assets/icons/arrow-left-icon.svg';
+        leftArrow.type = 'image/svg+xml';
+
+        rightIconContainer.appendChild(rightArrow);
+        this.popUpContent.appendChild(rightIconContainer);
+        leftIconContainer.appendChild(leftArrow);
+        this.popUpContent.appendChild(leftIconContainer);
     },
 
     getImageStyles: function (width, height) {
@@ -129,7 +145,7 @@ var PopUp = {
         }
     },
 
-    sayWord: function() {
+    sayWord: function () {
         var wordModel = JSON.parse(PopUp.popUpContent.dataset.wordModel);
         var word = wordModel.wordName;
         var voiceProperties = new SpeechSynthesisUtterance(word);

@@ -490,23 +490,40 @@ document.onreadystatechange = function () {
 
 
 
-// ----- ----- web2/assets/js/features/search-view-init.js ----- ----- 
+// ----- ----- web2/assets/js/features/show-phonemes-level-based.js ----- ----- 
 
-var SearchView = {
+var SearchPhonemes = {
     init: function () {
-        var searchKey = document.getElementById('searchKey').value;
-        var searchLength = document.getElementById('searchLength').value || 0;
-
-        PhonicsService.searchWordsBasedKeyAndLength(searchKey, searchLength)
+        PhonemeService.getV2Phonemes()
             .then((response) => {
-                if (response.phonics && response.phonics.length == 0) {
+                if (response.phoneme && response.phoneme.length == 0) {
                     Render.emptySearchResult();
                     return;
                 }
-                var wordList = response.phonics.map((wordJSON) => new WordModel(wordJSON));
-                Render.words(wordList, SearchView.onWordElementClick);
+                var phonemeList = response.phoneme.map((phonemeJSON) => new PhonemeModel(phonemeJSON));
+                Render.phonemes(phonemeList, SearchPhonemes.onPhonemeElementClick);
+                document.getElementById(phonemeList[0].phonemeId).click();
+
             }).catch((errorResponse) => {
                 console.log('errorResponse = ' + JSON.stringify(errorResponse));
+            });
+    },
+
+    onPhonemeElementClick: function () {
+        var phonemeModel = JSON.parse(this.dataset.phonemeModel);
+
+        // Set Selected Class To Current Element
+        CommonUtil.deselectPhonemes();
+        this.classList.add('phoneme-element-selected');
+
+        // GetWords 
+        WordsService.getV2Words(phonemeModel.phonemeId)
+            .then(function (response) {
+                var wordList = response.words.map((wordJSON) => new WordModel(wordJSON));
+                Render.words(wordList, SearchPhonemes.onWordElementClick, phonemeModel);
+            })
+            .catch(function (errorResponse) {
+                console.log('error => ' + JSON.stringify(errorResponse));
             });
     },
 
@@ -515,7 +532,26 @@ var SearchView = {
 
         // Open Pop Up
         PopUp.open(wordModel);
-    }
+    },
+
+};
+
+window.addEventListener('domReadyCustomEvent', function () {
+    SearchPhonemes.init();
+});
+
+
+// ----- ----- web2/assets/js/models/phoneme-model.js ----- ----- 
+
+var PhonemeModel = function (phonemeObj) {
+    this.phonemeId = phonemeObj.id;
+    this.phonemeName = phonemeObj.name;
+    this.phonemeOrderNo = phonemeObj.orderNo;
+};
+
+PhonemeModel.prototype.toJson = function (phonemeObj) {
+    this.name = phonemeObj.phonemeName;
+    this.orderNo = phonemeObj.phonemeOrderNo;
 };
 
 
@@ -535,16 +571,52 @@ WordModel.prototype.toJson = function (wordObj) {
 };
 
 
-// ----- ----- web2/assets/js/services/phonics-service.js ----- ----- 
+// ----- ----- web2/assets/js/services/phoneme-service.js ----- ----- 
 
-var PhonicsService = {
-    getWordsWithLengthConstraints: function (length) {
-        var url = AppConfig.baseUrl + '/phonics/length/' + length;
+var PhonemeService = {
+    getPhonemes: function () {
+        var baseUrl = AppConfig.baseUrl;
+        var url = baseUrl + '/phoneme/';
         return ReqProcessor.GET(url);
     },
 
-    searchWordsBasedKeyAndLength: function (key, length) {
-        var url = `${AppConfig.baseUrl}/phonics/search/${key}/${length}`;
+    searchPhonemes: function (key) {
+        var baseUrl = AppConfig.baseUrl;
+        var url = baseUrl + '/phoneme/search/' + key;
+        return ReqProcessor.GET(url);
+    },
+
+    // V2 Services
+    getV2Phonemes: function () {
+        var level = LEVEL;
+        var baseUrl = AppConfig.baseUrl;
+        var url = `${baseUrl}/v2/${level}/phoneme/`;
+        return ReqProcessor.GET(url);
+    },
+    
+    searchV2Phonemes: function (key) {
+        var level = LEVEL;
+        var baseUrl = AppConfig.baseUrl;
+        var url = `${baseUrl}/v2/${level}/phoneme/search/${key}`;
+        return ReqProcessor.GET(url);
+    },
+}
+
+
+// ----- ----- web2/assets/js/services/words-service.js ----- ----- 
+
+var WordsService = {
+    getWords: function (phonemeId) {
+        var baseUrl = AppConfig.baseUrl;
+        var url = baseUrl + '/words/' + phonemeId;
+        return ReqProcessor.GET(url);
+    },
+
+    // V2 Services
+    getV2Words: function (phonemeId) {
+        var level = LEVEL;
+        var baseUrl = AppConfig.baseUrl;
+        var url = `${baseUrl}/v2/${level}/words/${phonemeId}`;
         return ReqProcessor.GET(url);
     }
 };

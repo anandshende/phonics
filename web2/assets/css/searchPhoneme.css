@@ -136,6 +136,14 @@ body {
   padding: 8px 0;
 }
 
+.word-element > a {
+  color: #ffffff !important;
+}
+
+.word-element > .highlight-text {
+  color: #fd8214 !important;
+}
+
 .form-container {
   padding-top: 30px;
 }
@@ -268,6 +276,7 @@ body {
 }
 
 .pop-up-content {
+  height: 620px;
   width: 500px;
   line-height: 500px;
   background: black;
@@ -286,6 +295,7 @@ body {
 .pop-up-text-container {
   display: inline-block;
   white-space: nowrap;
+  margin: auto;
   line-height: 1;
   pointer-events: none;
 }
@@ -298,6 +308,22 @@ body {
 .pop-up-image-container > img {
   width: 100%;
   height: 100%;
+}
+
+.highlight-text {
+  text-decoration: underline;
+}
+
+.pop-up-icon-container.arrow {
+  position: fixed;
+  top: 50%;
+  transform: translate(0, -50%);
+  margin-top: 0;
+  line-height: 0;
+}
+
+.left-arrow {
+  left: 20px;
 }
 
 .left-panel {

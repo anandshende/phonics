@@ -1,16 +1,16 @@
 var mysql = require('mysql');
-var commonUtil = require('./common-util');
+var commonUtil = require('./../common-util');
 
 const con = mysql.createConnection({
     host: "localhost",
     user: "phonics_user",
     password: "password",
-    database: "phonics",
+    database: "phonics_v2",
     insecureAuth: true
 });
 con.connect((err) => {
-    /* if (err) throw err;
-    console.log("Connected to db - phonics"); */
+    if (err) throw err;
+    console.log("Connected to db - phonics_v2");
 });
 
 var getResultSet = (sql, callback) => {

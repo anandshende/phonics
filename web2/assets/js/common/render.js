@@ -24,8 +24,9 @@ var Render = {
 
     },
 
-    words: function (wordList, eventHandler) {
+    words: function (wordList, eventHandler, phonemeModel) {
         var wordListElement = document.getElementById('wordList');
+        wordListElement.dataset.phonemeModel = JSON.stringify(phonemeModel);
 
         // Clear List
         wordListElement.innerHTML = "";
@@ -37,7 +38,7 @@ var Render = {
             wordDivElement.id = wordModel.wordId;
 
             // Add Element Details
-            wordDivElement.innerText = wordModel.wordName;
+            wordDivElement.innerHTML = CommonUtil.getWordHTML(wordModel.wordName, phonemeModel.phonemeName);
             wordDivElement.dataset.wordModel = JSON.stringify(wordModel);
 
             // Add Event Listeners
@@ -51,6 +52,7 @@ var Render = {
     emptySearchResult: function () {
         var divContainer = document.createElement('div');
         divContainer.innerText = 'No Results Found';
+        document.getElementById('wordList').innerHTML = '';
         document.getElementById('wordList').appendChild(divContainer);
     }
 };
@@ -59,6 +61,10 @@ var svgCallback = function (event, iconType) {
     var menu = document.getElementById('menu');
     if (iconType == 'close' && document.getElementById('popUpContent').dataset.wordModel) {
         PopUp.close();
+    } else if (iconType == 'rightArrow') {
+        PopUp.toggleImage();
+    } else if (iconType == 'leftArrow') {
+        PopUp.toggleImage();
     } else {
         menu.style.display = menu.style.display == 'block' ? 'none' : 'block';
     }
