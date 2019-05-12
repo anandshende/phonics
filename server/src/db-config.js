@@ -9,8 +9,8 @@ const con = mysql.createConnection({
     insecureAuth: true
 });
 con.connect((err) => {
-    if (err) throw err;
-    console.log("Connected to db - phonics");
+    /* if (err) throw err;
+    console.log("Connected to db - phonics"); */
 });
 
 var getResultSet = (sql, callback) => {

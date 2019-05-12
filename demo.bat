@@ -4,6 +4,6 @@ timeout 10
 
 start cmd /k "http-server .\web2\"
 
-start chrome http://localhost:8080/searchViews/searchPhoneme.html
+start chrome http://localhost:8080/levelBasedViews/level0.html
 
 exit
